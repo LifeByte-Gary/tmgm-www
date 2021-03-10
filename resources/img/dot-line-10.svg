@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="169.062" height="113.34" viewBox="0 0 169.062 113.34">
+  <path id="line_ten" d="M593,1617s128.93,7.32,168,112" transform="translate(-592.438 -1616.5)"/>
+    <use class="c-dashed-line__path" xlink:href="#line_ten"/>
+    <use class="c-dashed-line__dash" xlink:href="#line_ten"/>
+</svg>

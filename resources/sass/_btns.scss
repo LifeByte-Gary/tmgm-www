@@ -1,0 +1,157 @@
+.btn-rounded{
+    display: inline-block;
+    font-size: 12px;
+    text-transform: uppercase;
+    background-color: black(0.08);
+    border-radius: 68px;
+    line-height: 34px;
+    padding: 0 24px;
+    color: black(0.8);
+    text-decoration: none;
+    font-weight: 700;
+    @include transition(0.3s);
+    white-space: nowrap;
+
+    &.white-line{
+        line-height: 30px;
+        background-color: transparent;
+        border:solid 2px white;
+        color: white;
+        &:hover{
+            background-color: white;
+            color: $primary-color;
+        }
+    }
+
+    &.primary-line{
+        line-height: 30px;
+        background-color: transparent;
+        border:solid 2px $primary-color;
+        color: $primary-color;
+        &:hover{
+            background-color: $primary-color;
+            color: white;
+        }
+    }
+
+    &.white{
+        background-color: white(1);
+        color: $primary-color;
+        &:hover{
+            background-color: white(0.2);
+            color: white;
+        }
+    }
+}
+
+
+
+.btn-big,
+.btn-normal{
+    display: inline-block;
+    line-height: 60px;
+    padding: 0 38px;
+    font-size: 16px;
+    font-weight: 700;
+    background-color: black(0.08);
+    color: black;
+    border-radius: 3px;
+    @include transition(0.3s);
+    text-decoration: none;
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+    > i{
+        display: inline-block;
+        margin-left: 10px;
+        font-size: 24px;
+    }
+    &.primary{
+        background-color: $primary-color;
+        background-image: linear-gradient(to right, $primary-color, rgba(#2bb6f6, 0.8));
+        color: white;
+        overflow: hidden;
+        &:hover{
+            background-color: white;
+            color: white;
+            &:before{
+                display: none;
+            }
+        }
+        &.line{
+            background-image: none;
+            background-color: transparent;
+            border: solid 2px $primary-color;
+            color: $primary-color;
+            &:hover{
+                background-color: $primary-color;
+                color: white;
+            }
+        }
+    }
+
+    &.white-trans{
+        background-color: white(0.14);
+        color: white;
+        &:hover{
+            background-color: white;
+            color: $primary-color;
+        }
+    }
+
+    &.white{
+        background-color: white(1);
+        color: $primary-color;
+        &:hover{
+            background-color: $secondary-color;
+            color: white;
+        }
+    }
+}
+
+.btn-normal{
+    line-height: 1;
+    padding: 15px 34px;
+    font-size: 14px;
+}
+
+.btn-buy,
+.btn-sell{
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 700;
+    background-color: #c1fe85;
+    color: black(0.68);
+    border-radius: 4px;
+    text-decoration: none;
+    padding: 3px 6px;
+    transition: all .3s ease;
+    &:hover{
+        background-color: black;
+        color: white;
+    }
+}
+.btn-sell{
+    background-color: #fe8b85;
+    color: white;
+}
+
+.btn-more-circle{
+    display: inline-block;
+    text-decoration: none;
+    height: 31px;
+    width: 31px;
+    text-align: center;
+    line-height: 28px;
+    background-color: $primary-color;
+    border-radius: 50%;
+    transition: all .3s ease;
+    &:hover{
+        transform: rotate(360deg);
+    }
+
+    >img{
+        max-width: 11px;
+        vertical-align: middle;
+    }
+}

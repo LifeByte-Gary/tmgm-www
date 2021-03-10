@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware([DetectDomain::class])
+Route::middleware([/*DetectDomain::class*/])
     ->group(function () {
         Route::get('/app', [PageController::class, 'home'])->name('pages.home');
     });

@@ -1,0 +1,52 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800;900&display=swap');
+
+$base-font:'Nunito Sans', sans-serif;
+
+//Color Functions
+@function primary($val){
+    @return rgba(23,106,243,$val);
+}
+
+@function secondary($val){
+    @return rgba(64,220,253,$val);
+}
+
+
+@function error($val){
+    @return rgba(214,71,71,$val);
+}
+
+@function success($val){
+    @return rgba(101,182,123,$val);
+}
+
+@function alert($val){
+    @return rgba(214,113,32,$val);
+}
+
+@function black($val){
+    @return rgba(0,0,0,$val);
+}
+
+@function white($val){
+    @return rgba(255,255,255,$val);
+}
+
+//Colors
+$primary-color:primary(1);
+$secondary-color:secondary(1);
+$error-color:error(1);
+$succ-color:success(1);
+$alert-color:alert(1);
+$font-base-color:#464646;
+
+
+//Transitions
+@mixin transition($val){
+    transition: all $val ease;
+    -webkit-transition: all $val ease;
+    -moz-transition: all $val ease;
+    -ms-transition: all $val ease;
+}
+
