@@ -601,4 +601,6 @@
             </div>
         </div>
     </div>
+
+    @include('layouts._get-started')
 @endsection
