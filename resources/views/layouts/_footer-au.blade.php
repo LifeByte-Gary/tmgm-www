@@ -1,7 +1,7 @@
 <footer>
     <div class="tm-container flx">
         <div>
-            <img src="{{ asset('images/footer-logo.png') }}" alt="" class="footer-logo" />
+            <img src="{{ asset('img/footer-logo.png') }}" alt="" class="footer-logo" />
         </div>
         <div class="address">
             <p><strong>Phone</strong> +61 2 8036 8388</p>

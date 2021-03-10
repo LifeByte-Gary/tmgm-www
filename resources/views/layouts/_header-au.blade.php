@@ -2,7 +2,7 @@
     <div class="tm-container flx logo-row">
         <div class="tm-logo-holder">
             <a href="/">
-                <img src="{{ asset('images/main-logo.png') }}" alt="TMGM"/>
+                <img src="{{ asset('img/main-logo.png') }}" alt="TMGM"/>
             </a>
         </div>
         <div class="top-lang">
@@ -12,36 +12,19 @@
             <a href="https://portal.tmgm.com/register?language=en" target="_blank" class="btn-rounded white">Get
                 Started</a>
             <span class="lang-trigger">
-                    <img src="{{ asset('/images/flag-uk.png') }}" alt=""/>
+                    <img src="{{ asset('/img/flag-uk.png') }}" alt=""/>
                 </span>
 
             <div class="select-language-drop">
                 <a href="javascript:" data-href="{none}/en/" class="item-lang">
-                    <img src="{{ asset('/images/flag-uk.png') }}" alt=""/>
+                    <img src="{{ asset('/img/flag-uk.png') }}" alt=""/>
                     <span>English</span>
                 </a>
                 <a href="javascript:" data-href="{none}/cn/" class="item-lang">
-                    <img src="{{ asset('/images/flag-cn.png') }}" alt=""/>
+                    <img src="{{ asset('/img/flag-cn.png') }}" alt=""/>
                     <span>简体中文</span>
                 </a>
-                <a href="javascript:" data-href="{none}/pt/" class="item-lang">
-                    <img src="{{ asset('/images/flags/br.png') }}" alt="">
-                    <span>Português</span>
-                </a>
-                <a href="javascript:" data-href="{none}/es/" class="item-lang">
-                    <img src="{{ asset('/images/flag-es.png') }}" alt=""/>
-                    <span>Español</span>
-                </a>
-                <a href="javascript:" data-href="{none}/th/" class="item-lang">
-                    <img src="{{ asset('/images/flags/th.png') }}" alt=""/>
-                    <span>ภาษาไทย</span>
-                </a>
-                <a href="javascript:" data-href="{none}/vn/" class="item-lang">
-                    <img src="{{ asset('/images/flag-vn.png') }}" alt=""/>
-                    <span>Tiếng Việt</span>
-                </a>
             </div>
-
         </div>
     </div>
     <div class="tm-container flx nav-row">
@@ -66,7 +49,6 @@
                             <li><a href="/en/indices">Indices</a></li>
 
                         </ul>
-
                     </li>
                     <li class="has-submenu">
                         <a href="javascript:void(0);">Trading Platforms</a>
@@ -82,7 +64,6 @@
                             <li><a href="/en/iress">IRESS</a></li>
 
                         </ul>
-
                     </li>
                     <li class="has-submenu">
                         <a href="javascript:void(0);">Trading With Us</a>
@@ -96,7 +77,6 @@
                             <li><a href="/en/deposit-and-withdrawal">Deposit &amp; Withdrawal</a></li>
 
                         </ul>
-
                     </li>
                     <li class="has-submenu">
                         <a href="javascript:void(0);">Tools</a>
@@ -108,7 +88,6 @@
                             <li><a href="/en/trade-with-australia-open">Trade the AO21</a></li>
 
                         </ul>
-
                     </li>
                     <li class="has-submenu">
                         <a href="javascript:void(0);">Partnership</a>
@@ -118,7 +97,6 @@
                             <li><a href="/en/partnership-plans">Partnership Plans</a></li>
 
                         </ul>
-
                     </li>
                     <li class="has-submenu">
                         <a href="javascript:void(0);">Company</a>
@@ -138,7 +116,6 @@
                             <li><a href="/en/australian-open-21">AO 21</a></li>
 
                         </ul>
-
                     </li>
                 </ul>
             </div>
@@ -148,14 +125,12 @@
         <div class="flx">
             <div class="responsive-logo-holder">
                 <a href="/">
-                    <img src="{{ asset('images/main-logo.png') }}" alt="TMGM"/>
+                    <img src="{{ asset('img/main-logo.png') }}" alt="TMGM"/>
                 </a>
             </div>
             <nav class="mobile-nav">
                 <div class="mobile-menu-items-wraper">
                     <ul>
-
-
                         <li class="has-submenu">
                             <a href="javascript:void(0);">Markets</a>
 
@@ -176,8 +151,6 @@
                             </ul>
 
                         </li>
-
-
                         <li class="has-submenu">
                             <a href="javascript:void(0);">Trading Platforms</a>
 
@@ -194,8 +167,6 @@
                             </ul>
 
                         </li>
-
-
                         <li class="has-submenu">
                             <a href="javascript:void(0);">Trading With Us</a>
 
@@ -210,8 +181,6 @@
                             </ul>
 
                         </li>
-
-
                         <li class="has-submenu">
                             <a href="javascript:void(0);">Tools</a>
 
@@ -224,8 +193,6 @@
                             </ul>
 
                         </li>
-
-
                         <li class="has-submenu">
                             <a href="javascript:void(0);">Partnership</a>
 
@@ -236,8 +203,6 @@
                             </ul>
 
                         </li>
-
-
                         <li class="has-submenu">
                             <a href="javascript:void(0);">Company</a>
 
@@ -258,8 +223,6 @@
                             </ul>
 
                         </li>
-
-
                     </ul>
                 </div>
             </nav>
@@ -274,19 +237,27 @@
     <div class="sticky-header-nav">
         <div class="flx">
             <div class="responsive-logo-holder">
-                <a href="/">
-                    <img src="{{ asset('images/logo.png') }}" alt="TMGM"/>
+                <a href="/en/">
+                    <img src="{{asset('img/logo.png')}}" alt="TMGM">
                 </a>
             </div>
             <nav class="mobile-nav">
-                <div class="mobile-menu-items-wraper">
+                    <span class="close-menu">
+                        ×
+                    </span>
+                <div class="tm-btn-wrapper tm-pt-40 t-al-c">
+                    <a href="https://portal.tmgm.com/register?language=en" target="_blank" class="btn-rounded white
+                    get-started-btn t-dn m-dib">Get Started</a>
+                    <a href="https://portal.tmgm.com/login?language=en" target="_blank"
+                       class="btn-rounded white-line t-dn m-dib">Portal</a>
+                </div>
+                <div class="mobile-menu-items-wraper tm-pt-40">
+
                     <ul>
-
-
                         <li class="has-submenu">
                             <a href="javascript:void(0);">Markets</a>
-
                             <ul class="tm-submenu">
+                                <li><h4>Markets</h4></li>
 
                                 <li><a href="/en/markets">Range of Markets</a></li>
 
@@ -301,14 +272,11 @@
                                 <li><a href="/en/indices">Indices</a></li>
 
                             </ul>
-
                         </li>
-
-
                         <li class="has-submenu">
                             <a href="javascript:void(0);">Trading Platforms</a>
-
                             <ul class="tm-submenu">
+                                <li><h4>Trading Platforms</h4></li>
 
                                 <li><a href="/en/trading-platforms">Platform Overview</a></li>
 
@@ -319,14 +287,11 @@
                                 <li><a href="/en/iress">IRESS</a></li>
 
                             </ul>
-
                         </li>
-
-
                         <li class="has-submenu">
                             <a href="javascript:void(0);">Trading With Us</a>
-
                             <ul class="tm-submenu">
+                                <li><h4>Trading With Us</h4></li>
 
                                 <li><a href="/en/markets">Range of Markets</a></li>
 
@@ -335,40 +300,31 @@
                                 <li><a href="/en/deposit-and-withdrawal">Deposit &amp; Withdrawal</a></li>
 
                             </ul>
-
                         </li>
-
-
                         <li class="has-submenu">
                             <a href="javascript:void(0);">Tools</a>
-
                             <ul class="tm-submenu">
+                                <li><h4>Tools</h4></li>
 
                                 <li><a href="/en/hubx">HUBx</a></li>
 
                                 <li><a href="/en/trade-with-australia-open">Trade the AO21</a></li>
 
                             </ul>
-
                         </li>
-
-
                         <li class="has-submenu">
                             <a href="javascript:void(0);">Partnership</a>
-
                             <ul class="tm-submenu">
+                                <li><h4>Partnership</h4></li>
 
                                 <li><a href="/en/partnership-plans">Partnership Plans</a></li>
 
                             </ul>
-
                         </li>
-
-
                         <li class="has-submenu">
                             <a href="javascript:void(0);">Company</a>
-
                             <ul class="tm-submenu">
+                                <li><h4>Company</h4></li>
 
                                 <li><a href="/en/about">About Us</a></li>
 
@@ -383,46 +339,31 @@
                                 <li><a href="/en/australian-open-21">AO 21</a></li>
 
                             </ul>
-
                         </li>
-
-
                     </ul>
+                    <div class="competition-btn">
+                        <a href="https://competition.tmgm.com/en/" class="btn-rounded white get-started-btn"
+                           target="_blank">Competition</a>
+                    </div>
                 </div>
             </nav>
             <div class="tm-btn-holder">
-                <a href="https://portal.tmgm.com/register" target="_blank" class="btn-rounded white
+                <a href="https://portal.tmgm.com/register?language=en" target="_blank" class="btn-rounded white
                     get-started-btn t-dib m-dn">Get Started</a>
-                <a href="https://portal.tmgm.com/login" target="_blank" class="btn-rounded
+                <a href="https://portal.tmgm.com/login?language=en" target="_blank" class="btn-rounded
                     white-line t-dib m-dn">Portal</a>
                 <span class="lang-trigger">
-                        <img src="{{asset('images/flag-uk.png')}}" alt=""/>
+                        <img src="{{ asset('img/flag-uk.png') }}" alt="">
                         <span>EN</span>
                     </span>
                 <div class="select-language-drop">
-                    <a href="javascript:" data-href="{none}/en/" class="item-lang">
-                        <img src="{{ asset('/images/flag-uk.png') }}" alt=""/>
+                    <a href="javascript:" data-href="/en/" class="item-lang">
+                        <img src="{{ asset('img/flag-uk.png') }}" alt="">
                         <span>English</span>
                     </a>
-                    <a href="javascript:" data-href="{none}/cn/" class="item-lang">
-                        <img src="{{ asset('/images/flag-cn.png') }}" alt=""/>
+                    <a href="javascript:" data-href="/cn/" class="item-lang">
+                        <img src="{{ asset('img/flag-cn.png') }}" alt="">
                         <span>简体中文</span>
-                    </a>
-                    <a href="javascript:" data-href="{none}/pt/" class="item-lang">
-                        <img src="{{ asset('/images/flags/br.png') }}" alt="">
-                        <span>Português</span>
-                    </a>
-                    <a href="javascript:" data-href="{none}/es/" class="item-lang">
-                        <img src="{{ asset('/images/flag-es.png') }}" alt=""/>
-                        <span>Español</span>
-                    </a>
-                    <a href="javascript:" data-href="{none}/th/" class="item-lang">
-                        <img src="{{ asset('/images/flags/th.png') }}" alt=""/>
-                        <span>ภาษาไทย</span>
-                    </a>
-                    <a href="javascript:" data-href="{none}/vn/" class="item-lang">
-                        <img src="{{ asset('/images/flag-vn.png') }}" alt=""/>
-                        <span>Tiếng Việt</span>
                     </a>
                 </div>
                 <span class="menu-trigger">
