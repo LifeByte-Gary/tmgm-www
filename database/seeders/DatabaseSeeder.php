@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(LocaleSeeder::class);
         $this->call(SiteConfigSeeder::class);
     }
 }

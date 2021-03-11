@@ -1,32 +1,7 @@
 <?php
 
-// Get locales enabled on the Global domain.
 use App\Traits\LocaleTrait;
 use App\Traits\SiteConfigTrait;
-
-if (!function_exists('get_global_locales')) {
-    /**
-     * Get locales enabled on the Global domain.
-     *
-     * @return array
-     */
-    function get_global_locales(): array
-    {
-        return LocaleTrait::getGlobalLocales();
-    }
-}
-
-if (!function_exists('get_au_locales')) {
-    /**
-     * Get locales enabled on the Australian domain.
-     *
-     * @return array
-     */
-    function get_au_locales(): array
-    {
-        return LocaleTrait::getAuLocales();
-    }
-}
 
 if (!function_exists('get_site_config')) {
     /**
@@ -39,5 +14,30 @@ if (!function_exists('get_site_config')) {
     function get_site_config($key, $default = null)
     {
         return SiteConfigTrait::getSiteConfigByKey($key, $default);
+    }
+}
+
+if (!function_exists('get_locales')) {
+    /**
+     * Get enabled locales according to domain.
+     *
+     * @param $domain
+     * @return array
+     */
+    function get_locales($domain): array
+    {
+        return LocaleTrait::getLocalesByDomain($domain);
+    }
+}
+
+if (!function_exists('get_active_countries')) {
+    /**
+     * Get all countries that have access to the website (both Global, Australia and Greater Land).
+     *
+     * @return array
+     */
+    function get_active_countries(): array
+    {
+        return LocaleTrait::getActiveCountries();
     }
 }

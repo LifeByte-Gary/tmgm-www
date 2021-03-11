@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
+use App;
 use App\Exceptions\ExceptionLogger;
-use Exception;
 use GeoIp2\Exception\GeoIp2Exception;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Crypt;
@@ -32,23 +32,30 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // TODO: IP detection
-        View::share('domain', 'global');
+        $currentDomain = self::getCurrentDomain();
 
-        // TODO: Language detection
-        // Check for 'lang' cookie
-        $cookie = Cookie::get('lang') ? Crypt::decrypt(Cookie::get('lang')) : false;
+        View::share('domain', $currentDomain);
 
-        if (!$cookie) {
-            // User didn't choose a prefer language, set a default country-based language.
 
-            // Get user country
-            $country = self::detectCountry();
+        // Get user country
+//            $country = self::getUserCountry();
+        $country = 'Mozambique';
 
+        // Get all active countries
+        $activeCountries = get_active_countries();
+
+        if (in_array($country, $activeCountries)) {
+            // User have access to the website
+            // TODO: IP detection
+            self::setSiteLocale($country, $currentDomain);
+
+        } else {
+            // TODO: inaccessibility handler
+            // User don't have access to the website
         }
     }
 
-    private static function detectCountry(): string
+    private static function getUserCountry(): string
     {
         // Get user IP
         $ip = Request::ip();
@@ -68,5 +75,49 @@ class AppServiceProvider extends ServiceProvider
         }
 
         return $country;
+    }
+
+    private static function getCurrentDomain(): string
+    {
+        $globalDomain = get_site_config('domain_global', 'tmgm.com');
+        $auDomain = get_site_config('domain_au', 'tmgm.com.au');
+
+        $currentHost = Request::getHttpHost();
+
+        if (str_ends_with($currentHost, $globalDomain)) {
+            return 'global';
+        } else if (str_ends_with($currentHost, $auDomain)) {
+            return 'au';
+        }
+        return 'global';
+    }
+
+    private static function setSiteLocale($country, $domain)
+    {
+        $preferLocale = Cookie::get('lang') ? Crypt::decrypt(Cookie::get('lang')) : false;
+
+        $enabledLocales = get_locales($domain);
+
+        if ($preferLocale) {
+            // User has set a prefer language, check if it is a valid language in current domain.
+
+            if (in_array($preferLocale, $enabledLocales)) {
+                // Valid locale, set locale.
+
+                App::setLocale($preferLocale);
+            } else {
+                // Invalid locale, use default language.
+
+                $defaultLocale = App\Traits\LocaleTrait::getLocaleByCountry($country);
+                App::setLocale($defaultLocale['language']);
+                App::setFallbackLocale($defaultLocale['fallback']);
+            }
+        } else {
+            // User didn't set a prefer language, use default language.
+
+            $defaultLocale = App\Traits\LocaleTrait::getLocaleByCountry($country);
+            App::setLocale($defaultLocale['language']);
+            App::setFallbackLocale($defaultLocale['fallback']);
+        }
     }
 }

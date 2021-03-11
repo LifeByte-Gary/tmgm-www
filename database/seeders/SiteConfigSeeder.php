@@ -33,13 +33,13 @@ class SiteConfigSeeder extends Seeder
             ),
             2 => array(
                 'key' => 'domain_global',
-                'value' => 'www.tmgm.com',
+                'value' => 'tmgm.global.test',
                 'type' => 'string',
                 'comment' => 'Global site domain'
             ),
             3 => array(
                 'key' => 'domain_au',
-                'value' => 'www.tmgm.com.au',
+                'value' => 'tmgm.au.test',
                 'type' => 'string',
                 'comment' => 'Australia site name'
             ),
