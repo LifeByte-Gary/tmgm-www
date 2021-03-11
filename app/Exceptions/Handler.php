@@ -2,6 +2,8 @@
 
 namespace App\Exceptions;
 
+use App\Traits\ExceptionLogTrait;
+use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -36,6 +38,10 @@ class Handler extends ExceptionHandler
     {
         $this->reportable(function (Throwable $e) {
             //
+        });
+
+        $this->renderable(function (Exception $exception, $request) {
+            ExceptionLogTrait::logException($exception, $request);
         });
     }
 }

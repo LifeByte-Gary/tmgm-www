@@ -51,7 +51,7 @@ class SiteConfigSeeder extends Seeder
             ),
             5 => array(
                 'key' => 'geoip_licence_key',
-                'value' => '2ap-qQ4eMgGCQ9!',
+                'value' => 'ZpOrta2BUSYxJfAT',
                 'type' => 'string',
                 'comment' => 'MindMax GeoIP2 licence key'
             ),

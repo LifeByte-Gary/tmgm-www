@@ -7,7 +7,7 @@ namespace App\Traits;
 use App\Models\SiteConfig;
 use Illuminate\Support\Facades\Cache;
 
-class SiteConfigTrait
+trait SiteConfigTrait
 {
     public static function getAllSiteConfigs()
     {

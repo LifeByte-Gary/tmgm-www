@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use App\Traits\LocaleTrait;
+use App\Exceptions\ExceptionLogger;
+use Exception;
 use GeoIp2\Exception\GeoIp2Exception;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Request;
@@ -44,11 +44,8 @@ class AppServiceProvider extends ServiceProvider
 
             // Get user country
             $country = self::detectCountry();
-            dd($country);
 
         }
-
-
     }
 
     private static function detectCountry(): string
@@ -66,7 +63,8 @@ class AppServiceProvider extends ServiceProvider
             // Get visitors Geo info based on his IP
             $record = $client->city($ip);
             $country = $record->country->name;
-        } catch (GeoIp2Exception $ex) {
+        } catch (GeoIp2Exception $exception) {
+            throw new ExceptionLogger($exception);
         }
 
         return $country;
