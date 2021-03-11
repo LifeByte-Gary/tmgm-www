@@ -15,12 +15,10 @@ class CreateLocalesTable extends Migration
     {
         Schema::create('locales', function (Blueprint $table) {
             $table->id();
-            $table->string('continent');
-            $table->string('country');
-            $table->boolean('direction_type')->default(0);
-            $table->string('language')->default('en');
-            $table->string('fallback_language')->default('en');
-            $table->tinyInteger('accessibility')->default(0);
+            $table->string('url');
+            $table->string('code');
+            $table->string('flag');
+            $table->string('description');
             $table->boolean('active_in_au')->default(0);
         });
     }

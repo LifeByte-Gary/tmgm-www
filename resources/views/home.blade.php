@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    {{ dd(Cookie::get('lang')) }}
     <div class="tm-main-banner" style="background-image:url({{ asset('img/banner-img-bk.jpg') }})">
         <div class="tm-container flx">
             <div class="tm-banner-content">

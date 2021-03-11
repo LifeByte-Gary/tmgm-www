@@ -32,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        config('app.locales');
         $currentDomain = self::getCurrentDomain();
 
         View::share('domain', $currentDomain);
@@ -94,7 +95,7 @@ class AppServiceProvider extends ServiceProvider
 
     private static function setSiteLocale($country, $domain)
     {
-        $preferLocale = Cookie::get('lang') ? Crypt::decrypt(Cookie::get('lang')) : false;
+        $preferLocale = Cookie::get('lang') ? Cookie::get('lang') : false;
 
         $enabledLocales = get_locales($domain);
 

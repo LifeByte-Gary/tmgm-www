@@ -15,34 +15,42 @@ class LocaleSeeder extends Seeder
     public function run()
     {
         // Clear site_configs table.
-        DB::table('site_configs')->delete();
+        DB::table('locales')->delete();
 
         $locales = array(
             0 => array(
-                'continent' => 'Asia Pacific',
-                'country' => 'Australia',
-                'direction_type' => 0,
-                'language' => 'en',
-                'fallback_language' => 'en',
-                'accessibility' => 1,
+                'url' => 'en',
+                'code' => 'en',
+                'flag' => '/img/flag-uk.png',
+                'description' => 'English',
                 'active_in_au' => 1
             ),
             1 => array(
-                'continent' => 'Africa and Middle East',
-                'country' => 'Mozambique',
-                'direction_type' => 0,
-                'language' => 'pt',
-                'fallback_language' => 'en',
-                'accessibility' => 1,
-                'active_in_au' => 0
+                'url' => 'chs',
+                'code' => 'zh-CN',
+                'flag' => '/img/flag-cn.png',
+                'description' => '简体中文',
+                'active_in_au' => 1
             ),
             2 => array(
-                'continent' => 'Europe',
-                'country' => 'Spain',
-                'direction_type' => 0,
-                'language' => 'es',
-                'fallback_language' => 'en',
-                'accessibility' => 0,
+                'url' => 'cht',
+                'code' => 'zh-HK',
+                'flag' => '/img/flag-cn.png',
+                'description' => '繁体中文',
+                'active_in_au' => 0
+            ),
+            3 => array(
+                'url' => 'pt',
+                'code' => 'pt-BR',
+                'flag' => '/img/flags/br.png',
+                'description' => 'Português',
+                'active_in_au' => 0
+            ),
+            4 => array(
+                'url' => 'es',
+                'code' => 'es-ES',
+                'flag' => '/img/flag-cn.png',
+                'description' => 'Español',
                 'active_in_au' => 0
             ),
 
