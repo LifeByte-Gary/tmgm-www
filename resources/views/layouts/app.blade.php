@@ -18,9 +18,6 @@
     {{--Core JS--}}
     <script src="{{ mix('js/app.js') }}"></script>
 
-    {{--JQuery UI--}}
-    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>--}}
-
 </head>
 <body class="antialiased">
 @if($domain === 'global')
@@ -38,20 +35,6 @@
 
 {{--Foot JS--}}
 <script src="{{ mix('js/foot.js') }}"></script>
-
-{{--Owl Carousel JS
-<script src="{{asset('owl/owl.carousel.min.js')}}"></script>
-
-AOS JS
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-    AOS.init({
-        duration: 800
-    });
-    window.addEventListener("load", function (event) {
-        lazyload();
-    });
-</script>--}}
 
 </body>
 </html>

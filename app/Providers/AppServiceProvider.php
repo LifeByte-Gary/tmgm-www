@@ -44,6 +44,7 @@ class AppServiceProvider extends ServiceProvider
 
             // Get user country
             $country = self::detectCountry();
+            dd($country);
 
         }
 
@@ -60,7 +61,7 @@ class AppServiceProvider extends ServiceProvider
 
         try {
             // Create MindMax GoeIP client.
-            $client = new Client(42, 'pOrta2BUSYxJfAT');
+            $client = new Client(get_site_config('geoip_account_id'), get_site_config('geoip_licence_key'));
 
             // Get visitors Geo info based on his IP
             $record = $client->city($ip);
