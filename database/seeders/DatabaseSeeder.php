@@ -16,5 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(LocaleSeeder::class);
         $this->call(SiteConfigSeeder::class);
         $this->call(CountrySeeder::class);
+        $this->call(PageSeeder::class);
+        $this->call(PageContentSeeder::class);
     }
 }

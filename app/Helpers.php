@@ -18,19 +18,6 @@ if (!function_exists('get_site_config')) {
     }
 }
 
-if (!function_exists('get_locales')) {
-    /**
-     * Get enabled locales according to domain.
-     *
-     * @param $domain
-     * @return array
-     */
-    function get_locales($domain): array
-    {
-        return LocaleTrait::getLocalesByDomain($domain);
-    }
-}
-
 if (!function_exists('get_active_countries')) {
     /**
      * Get all countries that have access to the website (both Global, Australia and Greater Land).
@@ -62,5 +49,11 @@ if (!function_exists('detect_site_domain')) {
             return 'au';
         }
         return 'global';
+    }
+}
+
+if (!function_exists('get_page_content')) {
+    function get_page_content($component) {
+
     }
 }

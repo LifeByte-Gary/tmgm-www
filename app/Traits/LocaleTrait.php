@@ -21,6 +21,7 @@ trait LocaleTrait
 
             foreach ($locales as $locale) {
                 $result[$locale->url] = [
+                    'id' => $locale->id,
                     'url' => $locale->url,
                     'code' => $locale->code,
                     'flag' => $locale->flag,

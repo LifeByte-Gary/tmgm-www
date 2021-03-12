@@ -60,7 +60,6 @@ class DetectLocale
         } else {
 
             // Invalid locale, return 404 error page.
-            // TODO: return 404 error page
             $thisLocale = App::currentLocale();
             abort(404);
         }

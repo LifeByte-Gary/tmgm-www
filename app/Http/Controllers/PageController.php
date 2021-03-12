@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Traits\PageTrait;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -17,8 +18,12 @@ class PageController extends Controller
         return redirect(route('pages.home', ['locale' => App::currentLocale()]));
     }
 
-    public function home(Request $request): Factory|View|Application
+    public function home(Request $request, $locale): Factory|View|Application
     {
-        return view('home');
+        $page = PageTrait::getPageByTagAndLocale('home', $locale, detect_site_domain());
+
+        if ($page) {
+            return view($page->view_path, ['pageId' => $page->id]);
+        }
     }
 }
