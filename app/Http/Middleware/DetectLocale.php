@@ -13,7 +13,7 @@ use Session;
 class DetectLocale
 {
     /**
-     * Handle an incoming request.
+     * Detect and set app locale.
      *
      * @param Request $request
      * @param Closure $next
