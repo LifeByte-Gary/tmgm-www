@@ -12,7 +12,7 @@ trait LocaleTrait
      *
      * @return mixed
      */
-    public static function getLocaleSettings()
+    public static function getLocaleSettings(): mixed
     {
         return Cache::rememberForever('locales', function () {
             $result = [];
@@ -20,13 +20,11 @@ trait LocaleTrait
             $locales = Locale::all();
 
             foreach ($locales as $locale) {
-                $result[$locale->country] = [
-                    'continent' => $locale->continent,
-                    'country' => $locale->country,
-                    'direction_type' => $locale->direction_type,
-                    'language' => $locale->language,
-                    'fallback_language' => $locale->fallback_language,
-                    'accessibility' => $locale->accessibility,
+                $result[$locale->url] = [
+                    'url' => $locale->url,
+                    'code' => $locale->code,
+                    'flag' => $locale->flag,
+                    'description' => $locale->description,
                     'active_in_au' => $locale->active_in_au
                 ];
             }
@@ -36,12 +34,12 @@ trait LocaleTrait
     }
 
     /**
-     * Get all enabled locales by domain.
+     * Get all active locales by domain.
      *
      * @param $domain :Domain can be 'global' or 'au'.
      * @return array
      */
-    public static function getLocalesByDomain($domain): array
+    public static function getActiveLocalesByDomain($domain): array
     {
         $locales = [];
 
@@ -49,11 +47,8 @@ trait LocaleTrait
             case 'global':
             {
                 foreach (static::getLocaleSettings() as $localeSetting) {
-                    if (!in_array($localeSetting['language'], $locales)) {
-                        $locales[] = $localeSetting['language'];
-                    }
-                    if (!in_array($localeSetting['fallback_language'], $locales)) {
-                        $locales[] = $localeSetting['fallback_language'];
+                    if ($localeSetting['active_in_global']) {
+                        $locales[$localeSetting['url']] = $localeSetting['code'];
                     }
                 }
                 break;
@@ -63,12 +58,7 @@ trait LocaleTrait
             {
                 foreach (static::getLocaleSettings() as $localeSetting) {
                     if ($localeSetting['active_in_au']) {
-                        if (!in_array($localeSetting['language'], $locales)) {
-                            $locales[] = $localeSetting['language'];
-                        }
-                        if (!in_array($localeSetting['fallback_language'], $locales)) {
-                            $locales[] = $localeSetting['fallback_language'];
-                        }
+                        $locales[$localeSetting['url']] = $localeSetting['code'];
                     }
                 }
                 break;

@@ -32,10 +32,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        config('app.locales');
-        $currentDomain = self::getCurrentDomain();
-
-        View::share('domain', $currentDomain);
+        View::share('domain', detect_site_domain());
 
 
         // Get user country
@@ -43,17 +40,17 @@ class AppServiceProvider extends ServiceProvider
         $country = 'Mozambique';
 
         // Get all active countries
-        $activeCountries = get_active_countries();
-
-        if (in_array($country, $activeCountries)) {
-            // User have access to the website
-            // TODO: IP detection
-            self::setSiteLocale($country, $currentDomain);
-
-        } else {
-            // TODO: inaccessibility handler
-            // User don't have access to the website
-        }
+//        $activeCountries = get_active_countries();
+//
+//        if (in_array($country, $activeCountries)) {
+//            // User have access to the website
+//            // TODO: IP detection
+//            self::setSiteLocale($country, $currentDomain);
+//
+//        } else {
+//            // TODO: inaccessibility handler
+//            // User don't have access to the website
+//        }
     }
 
     private static function getUserCountry(): string

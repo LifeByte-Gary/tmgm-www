@@ -2,6 +2,7 @@
 
 use App\Traits\LocaleTrait;
 use App\Traits\SiteConfigTrait;
+use Illuminate\Support\Facades\Request;
 
 if (!function_exists('get_site_config')) {
     /**
@@ -39,5 +40,27 @@ if (!function_exists('get_active_countries')) {
     function get_active_countries(): array
     {
         return LocaleTrait::getActiveCountries();
+    }
+}
+
+if (!function_exists('detect_site_domain')) {
+    /**
+     * Detect the site domain that user is visiting: Global or Australian
+     *
+     * @return string
+     */
+    function detect_site_domain(): string
+    {
+        $globalDomain = get_site_config('domain_global', 'tmgm.com');
+        $auDomain = get_site_config('domain_au', 'tmgm.com.au');
+
+        $currentHost = Request::getHttpHost();
+
+        if (str_ends_with($currentHost, $globalDomain)) {
+            return 'global';
+        } else if (str_ends_with($currentHost, $auDomain)) {
+            return 'au';
+        }
+        return 'global';
     }
 }

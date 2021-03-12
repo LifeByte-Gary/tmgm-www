@@ -23,35 +23,40 @@ class LocaleSeeder extends Seeder
                 'code' => 'en',
                 'flag' => '/img/flag-uk.png',
                 'description' => 'English',
-                'active_in_au' => 1
+                'active_in_au' => 1,
+                'active_in_global' => 1
             ),
             1 => array(
                 'url' => 'chs',
                 'code' => 'zh-CN',
                 'flag' => '/img/flag-cn.png',
                 'description' => '简体中文',
-                'active_in_au' => 1
+                'active_in_au' => 1,
+                'active_in_global' => 1
             ),
             2 => array(
                 'url' => 'cht',
                 'code' => 'zh-HK',
                 'flag' => '/img/flag-cn.png',
                 'description' => '繁体中文',
-                'active_in_au' => 0
+                'active_in_au' => 0,
+                'active_in_global' => 1
             ),
             3 => array(
                 'url' => 'pt',
                 'code' => 'pt-BR',
                 'flag' => '/img/flags/br.png',
                 'description' => 'Português',
-                'active_in_au' => 0
+                'active_in_au' => 0,
+                'active_in_global' => 1
             ),
             4 => array(
                 'url' => 'es',
                 'code' => 'es-ES',
                 'flag' => '/img/flag-cn.png',
                 'description' => 'Español',
-                'active_in_au' => 0
+                'active_in_au' => 0,
+                'active_in_global' => 1
             ),
 
         );

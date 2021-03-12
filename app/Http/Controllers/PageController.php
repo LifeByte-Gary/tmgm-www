@@ -14,7 +14,7 @@ class PageController extends Controller
 {
     public function index(): Redirector|Application|RedirectResponse
     {
-        return redirect(route('pages.home', ['locale' => App::getLocale()]));
+        return redirect(route('pages.home', ['locale' => App::currentLocale()]));
     }
 
     public function home(Request $request): Factory|View|Application

@@ -22,13 +22,11 @@
 <body class="antialiased">
 @if($domain === 'global')
     @include('layouts._header-global')
-    @include('layouts._language-panel')
     @yield('content')
     @include('layouts._footer-global')
 
 @elseif($domain === 'au')
     @include('layouts._header-au')
-    @include('layouts._language-panel')
     @yield('content')
     @include('layouts._footer-au')
 @endif

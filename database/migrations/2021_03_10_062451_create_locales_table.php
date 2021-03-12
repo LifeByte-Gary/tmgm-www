@@ -15,11 +15,12 @@ class CreateLocalesTable extends Migration
     {
         Schema::create('locales', function (Blueprint $table) {
             $table->id();
-            $table->string('url');
+            $table->string('url')->unique();
             $table->string('code');
             $table->string('flag');
             $table->string('description');
             $table->boolean('active_in_au')->default(0);
+            $table->boolean('active_in_global')->default(0);
         });
     }
 

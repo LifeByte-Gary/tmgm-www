@@ -16,11 +16,11 @@
                 </span>
 
             <div class="select-language-drop">
-                <a href="javascript:" data-href="{none}/en/" class="item-lang">
+                <a href="javascript:" data-href="{{ route('pages.home', ['locale' => 'en']) }}" class="item-lang">
                     <img src="{{ asset('/img/flag-uk.png') }}" alt=""/>
                     <span>English</span>
                 </a>
-                <a href="javascript:" data-href="{none}/cn/" class="item-lang">
+                <a href="javascript:" data-href="{{ route('pages.home', ['locale' => 'chs']) }}" class="item-lang">
                     <img src="{{ asset('/img/flag-cn.png') }}" alt=""/>
                     <span>简体中文</span>
                 </a>
