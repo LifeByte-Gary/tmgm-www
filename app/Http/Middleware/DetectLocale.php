@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App;
+use App\Traits\LocaleTrait;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
@@ -20,27 +21,25 @@ class DetectLocale
      */
     public function handle(Request $request, Closure $next): mixed
     {
-        $currentLocale = App::currentLocale();
 
         // Get user prefer locale stored in session.
-        $preferLocale = $request->session()->get('locale', false);
+        $preferLocale = Session::get('locale', 'en');
 
         // Get locale from the url.
-        $requestLocale = $request->route('locale');
+        $requestLocale = $request->route('locale', $preferLocale);
 
         // Get all active locales.
-        $activeLocales = App\Traits\LocaleTrait::getActiveLocalesByDomain(detect_site_domain());
+        $activeLocales = LocaleTrait::getActiveLocalesByDomain(detect_site_domain());
 
 
-        if (!$preferLocale || $preferLocale !== $requestLocale) {
+        if ($preferLocale !== $requestLocale) {
 
-            $qq = App::currentLocale();
-            // User did not set a prefer locale or the locale requested in the url is not the prefer locale.
-            // Use request locale
+            // The locale requested in the url is not the prefer locale, change app locale to $requestLocale.
             self::setLocale($requestLocale, $activeLocales);
+        } else {
+            self::setLocale($preferLocale, $activeLocales);
         }
 
-        $newLocale = App::currentLocale();
         return $next($request);
     }
 
@@ -60,7 +59,6 @@ class DetectLocale
         } else {
 
             // Invalid locale, return 404 error page.
-            $thisLocale = App::currentLocale();
             abort(404);
         }
     }

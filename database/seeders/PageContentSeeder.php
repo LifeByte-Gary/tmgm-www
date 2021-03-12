@@ -61,8 +61,8 @@ class PageContentSeeder extends Seeder
             6 => array(
                 'page_id' => 2,
                 'component' => 'banner_left_title',
-                'type' => '最优报价与透明的交易环境相结合',
-                'value' => 'Combining a Transparent',
+                'type' => 'text',
+                'value' => '最优报价与透明的交易环境相结合',
             ),
             7 => array(
                 'page_id' => 2,

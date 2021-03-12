@@ -15,10 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PageController::class, 'index'])->name('pages.index');
 
 Route::middleware([DetectLocale::class])
-    ->prefix('/{locale}')
     ->group(function () {
-        Route::get('/', [PageController::class, 'home'])->name('pages.home');
+        Route::get('/', [PageController::class, 'index'])->name('pages.index');
+
+        Route::prefix('/{locale}')
+            ->group(function () {
+                Route::get('/', [PageController::class, 'home'])->name('pages.home');
+            });
     });

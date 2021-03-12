@@ -9,13 +9,13 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
-use Illuminate\Support\Facades\App;
+use Session;
 
 class PageController extends Controller
 {
     public function index(): Redirector|Application|RedirectResponse
     {
-        return redirect(route('pages.home', ['locale' => App::currentLocale()]));
+        return redirect(route('pages.home', ['locale' => Session::get('locale', 'en')]));
     }
 
     public function home(Request $request, $locale): Factory|View|Application
