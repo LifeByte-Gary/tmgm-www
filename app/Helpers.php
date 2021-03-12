@@ -1,6 +1,7 @@
 <?php
 
 use App\Traits\LocaleTrait;
+use App\Traits\PageContentTrait;
 use App\Traits\SiteConfigTrait;
 use Illuminate\Support\Facades\Request;
 
@@ -12,7 +13,7 @@ if (!function_exists('get_site_config')) {
      * @param null $default
      * @return mixed|null
      */
-    function get_site_config($key, $default = null)
+    function get_site_config($key, $default = null): mixed
     {
         return SiteConfigTrait::getSiteConfigByKey($key, $default);
     }
@@ -53,7 +54,14 @@ if (!function_exists('detect_site_domain')) {
 }
 
 if (!function_exists('get_page_content')) {
-    function get_page_content($component) {
+    function get_page_content($pageId, $component, $default = null)
+    {
+        $content = PageContentTrait::getPageContent($pageId, $component);
 
+        if ($content) {
+            return $content['value'];
+        } else {
+            return $default;
+        }
     }
 }

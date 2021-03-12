@@ -3,13 +3,16 @@
         @switch(substr(app()->getLocale(), 0, 2))
             @case('zh')
             @case('vn')
-            <h1>最优报价与透明的交易环境相结合</h1>
+            <h1>{{ get_page_content($pageId, 'banner_left_title', '最优报价与透明的交易环境相结合') }}</h1>
 
             @break
 
             @case('en')
             @case('pt')
-            <h1>Combining a Transparent<span> Trading Environment</span> with the Best Pricing</h1>
+            <h1>{{ get_page_content($pageId, 'banner_left_title_1', 'Combining a Transparent') }}
+                <span> {{ get_page_content($pageId, 'banner_left_title_2', 'Trading Environment') }}</span>
+                {{ get_page_content($pageId, 'banner_left_title_3', 'with the Best Pricing') }}
+            </h1>
             @break
         @endswitch
 
