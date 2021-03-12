@@ -3,7 +3,7 @@
         @switch(substr(app()->getLocale(), 0, 2))
             @case('zh')
             @case('vn')
-            <h1>{{ get_page_content($pageId, 'banner_left_title', '最优报价与透明的交易环境相结合') }}</h1>
+            <h1>{{ get_page_content($pageId, 'banner_left_title', 'Combining a Transparent Trading Environment with the Best Pricing') }}</h1>
 
             @break
 
@@ -17,10 +17,11 @@
         @endswitch
 
         <div class="tm-btn-wrapper">
-            <a href="https://portal.tmgm.com/register?language=zh" target="_blank" class="btn-big white">即刻开始交易</a>
-            或
+            <a href="https://portal.tmgm.com/register?language=zh" target="_blank"
+               class="btn-big white">{{ get_page_content($pageId, 'banner_left_btn_wrapper_1', 'Start Trading') }}</a>
+            {{ get_page_content($pageId, 'banner_left_btn_wrapper_2', 'or') }}
             <a href="https://portal.tmgm.com/register?register_type=demo&amp;language=zh" target="_blank"
-               class="text-link">试用模拟账号</a>
+               class="text-link">{{ get_page_content($pageId, 'banner_left_btn_wrapper_3', 'Try Demo Account') }}</a>
         </div>
         <div class="banner-img">
             <img src="{{ asset('img/banner-img.png') }}" alt="">
@@ -30,23 +31,15 @@
         <div class="tm-banner-live-quotes tm-live-quotes">
             <ul class="flx tm-tab-nav">
                 <li data-id="Forex" class="active-li">
-
-
                     外汇
                 </li>
                 <li data-id="Indices">
-
-
                     股指
                 </li>
                 <li data-id="Metals">
-
-
                     贵金属
                 </li>
                 <li data-id="Commodities">
-
-
                     能源
                 </li>
             </ul>
