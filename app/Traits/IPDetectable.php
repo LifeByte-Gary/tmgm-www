@@ -27,7 +27,7 @@ trait IPDetectable
         try {
 
             // Create MindMax GoeIP client.
-            $client = new Client(SiteConfigTrait::getSiteConfigByKey('geoip_account_id'), SiteConfigTrait::getSiteConfigByKey('geoip_licence_key'));
+            $client = new Client(get_site_config('geoip_account_id'), get_site_config('geoip_licence_key'));
 
             // Get visitors Geo info based on his IP
             $record = $client->city($ip);
