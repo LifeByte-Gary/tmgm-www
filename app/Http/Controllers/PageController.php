@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Traits\DomainDetectable;
 use App\Traits\PageTrait;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -20,7 +21,7 @@ class PageController extends Controller
 
     public function home(Request $request, $locale): Factory|View|Application
     {
-        $page = PageTrait::getPageByTagAndLocale('home', $locale, detect_site_domain());
+        $page = PageTrait::getPageByTagAndLocale('home', $locale, DomainDetectable::detectDomain());
 
         if ($page) {
             return view($page->view_path, ['pageId' => $page->id]);

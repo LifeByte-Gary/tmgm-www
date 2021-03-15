@@ -11,7 +11,7 @@ trait PageTrait
 {
     public static function getPageByTagAndLocale($tag, $locale, $siteDomain): bool|Page|Builder
     {
-        $localeId = LocaleTrait::getLocaleSettings()[$locale]['id'];
+        $localeId = LocaleTrait::getAllLocaleSettings()[$locale]['id'];
 
         $page = match ($siteDomain) {
             'global' => Page::where(['tag' => $tag, 'locale_id' => $localeId, 'for_global' => 1])->first(),

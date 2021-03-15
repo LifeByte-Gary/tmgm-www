@@ -42,6 +42,14 @@ class CountrySeeder extends Seeder
                 'locale_id' => 4,
                 'fallback_id' => 1,
             ),
+            3 => array(
+                'continent' => 'Unknown',
+                'country' => 'Unknown',
+                'redirection_type' => 0,
+                'accessibility' => 0,
+                'locale_id' => 1,
+                'fallback_id' => 1,
+            ),
 
         );
 

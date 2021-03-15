@@ -11,45 +11,11 @@ if (!function_exists('get_site_config')) {
      *
      * @param $key
      * @param null $default
-     * @return mixed|null
+     * @return mixed
      */
     function get_site_config($key, $default = null): mixed
     {
         return SiteConfigTrait::getSiteConfigByKey($key, $default);
-    }
-}
-
-if (!function_exists('get_active_countries')) {
-    /**
-     * Get all countries that have access to the website (both Global, Australia and Greater Land).
-     *
-     * @return array
-     */
-    function get_active_countries(): array
-    {
-        return LocaleTrait::getActiveCountries();
-    }
-}
-
-if (!function_exists('detect_site_domain')) {
-    /**
-     * Detect the site domain that user is visiting: Global or Australian
-     *
-     * @return string
-     */
-    function detect_site_domain(): string
-    {
-        $globalDomain = get_site_config('domain_global', 'tmgm.com');
-        $auDomain = get_site_config('domain_au', 'tmgm.com.au');
-
-        $currentHost = Request::getHttpHost();
-
-        if (str_ends_with($currentHost, $globalDomain)) {
-            return 'global';
-        } else if (str_ends_with($currentHost, $auDomain)) {
-            return 'au';
-        }
-        return 'global';
     }
 }
 

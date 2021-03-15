@@ -3,17 +3,26 @@
 namespace App\Http\Middleware;
 
 use App;
+use App\Traits\CountryTrait;
+use App\Traits\DomainDetectable;
+use App\Traits\IPDetectable;
 use App\Traits\LocaleTrait;
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\Crypt;
 use Session;
 
 class DetectLocale
 {
     /**
-     * Handle an incoming request.
+     * Detect the client locale and set the app locale. There are following conditions:
+     * 1. If there is a valid locale in the request route, set the app locale to it and update client prefer locale;
+     * 2. If there is an invalid locale in the request route, render "Page not found" page;
+     * 3. If the request route doesn't contain the locale, and client has set a valid prefer locale, set the app locale
+     * to it;
+     * 4. If the request route doesn't contain the locale, and client has set an invalid prefer locale, detect the
+     * default locale according to client country and set it as the prefer locale;
+     * 5. If the request route doesn't contain the locale, and client doesn't set a prefer locale, detect the
+     * default locale according to client country and set it as the prefer locale.
      *
      * @param Request $request
      * @param Closure $next
@@ -21,16 +30,14 @@ class DetectLocale
      */
     public function handle(Request $request, Closure $next): mixed
     {
+        // Get all active locales.
+        $activeLocales = LocaleTrait::getActiveLocalesByDomain(DomainDetectable::detectDomain());
 
         // Get user prefer locale stored in session.
-        $preferLocale = Session::get('locale', 'en');
+        $preferLocale = Session::get('locale') ? Session::get('locale') : self::getDefaultLocale($request, $activeLocales);
 
         // Get locale from the url.
         $requestLocale = $request->route('locale', $preferLocale);
-
-        // Get all active locales.
-        $activeLocales = LocaleTrait::getActiveLocalesByDomain(detect_site_domain());
-
 
         if ($preferLocale !== $requestLocale) {
 
@@ -61,5 +68,33 @@ class DetectLocale
             // Invalid locale, return 404 error page.
             abort(404);
         }
+    }
+
+    /**
+     * Get default country-based locale according to client's IP.
+     *
+     * @param $request
+     * @param $activeLocales
+     * @param string $default
+     * @return string
+     */
+    private function getDefaultLocale($request, $activeLocales, $default = 'en'): string
+    {
+        // Get client country.
+        $clientCountry = Session::get('country') ? Session::get('country') : IPDetectable::getUserCountry($request);
+
+        // Get locale and fallback locale according to client country.
+        $locales = CountryTrait::getLocalesByCountry($clientCountry);
+
+        // Set locale
+        if ($locales) {
+            if (isset($activeLocales[$locales['locale']])) {
+                return $locales['locale'];
+            } elseif (isset($activeLocales[$locales['fallback']])) {
+                return $locales['fallback'];
+            }
+        }
+
+        return $default;
     }
 }

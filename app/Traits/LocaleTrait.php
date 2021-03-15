@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use App\Models\Locale;
 use Illuminate\Support\Facades\Cache;
+use JetBrains\PhpStorm\ArrayShape;
 
 trait LocaleTrait
 {
@@ -12,7 +13,7 @@ trait LocaleTrait
      *
      * @return mixed
      */
-    public static function getLocaleSettings(): mixed
+    public static function getAllLocaleSettings(): mixed
     {
         return Cache::rememberForever('locales', function () {
             $result = [];
@@ -26,7 +27,8 @@ trait LocaleTrait
                     'code' => $locale->code,
                     'flag' => $locale->flag,
                     'description' => $locale->description,
-                    'active_in_au' => $locale->active_in_au
+                    'active_in_au' => $locale->active_in_au,
+                    'active_in_global' => $locale->active_in_global
                 ];
             }
 
@@ -47,7 +49,7 @@ trait LocaleTrait
         switch ($domain) {
             case 'global':
             {
-                foreach (static::getLocaleSettings() as $localeSetting) {
+                foreach (static::getAllLocaleSettings() as $localeSetting) {
                     if ($localeSetting['active_in_global']) {
                         $locales[$localeSetting['url']] = $localeSetting['code'];
                     }
@@ -57,7 +59,7 @@ trait LocaleTrait
 
             case 'au':
             {
-                foreach (static::getLocaleSettings() as $localeSetting) {
+                foreach (static::getAllLocaleSettings() as $localeSetting) {
                     if ($localeSetting['active_in_au']) {
                         $locales[$localeSetting['url']] = $localeSetting['code'];
                     }
@@ -67,45 +69,5 @@ trait LocaleTrait
         }
 
         return $locales;
-    }
-
-    /**
-     * Get locale setting according to given country.
-     *
-     * @param $country
-     * @return string[]
-     */
-    public static function getLocaleByCountry($country): array
-    {
-        $result = array(
-            'language' => 'en',
-            'fallback' => 'en'
-        );
-
-        if(isset(self::getLocaleSettings()[$country]) && !is_null(self::getLocaleSettings()[$country])) {
-            $data = self::getLocaleSettings()[$country];
-            $result['language'] = $data['language'];
-            $result['fallback'] = $data['fallback_language'];
-        }
-
-        return $result;
-    }
-
-    /**
-     * Get all countries that have access to the website (both Global, Australia and Greater Land).
-     *
-     * @return array
-     */
-    public static function getActiveCountries(): array
-    {
-        $countries = [];
-
-        foreach (static::getLocaleSettings() as $localeSetting) {
-            if ($localeSetting['accessibility']) {
-                $countries[] = $localeSetting['country'];
-            }
-        }
-
-        return $countries;
     }
 }

@@ -6,10 +6,12 @@ namespace App\Traits;
 
 use App\Models\ExceptionLog;
 use Illuminate\Support\Facades\Request;
+use JetBrains\PhpStorm\ArrayShape;
 use Throwable;
 
 trait ExceptionLogTrait
 {
+    #[ArrayShape(['user_ip' => "null|string", 'code' => "int", 'message' => "string", 'file' => "string", 'line' => "int", 'trace' => "array|string", 'request_url' => "mixed|string", 'request_data' => "false|mixed|string"])]
     public static function convertException(Throwable $exception, $request = null, $stringOnly = false): array
     {
         return [

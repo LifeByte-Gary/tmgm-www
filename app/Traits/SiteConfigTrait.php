@@ -47,7 +47,7 @@ trait SiteConfigTrait
         });
     }
 
-    public static function getSiteConfigByKey($key, $default=null)
+    public static function getSiteConfigByKey($key, $default = null)
     {
         $configs = self::getAllSiteConfigs();
 
