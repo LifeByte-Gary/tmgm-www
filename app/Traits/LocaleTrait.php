@@ -51,7 +51,7 @@ trait LocaleTrait
             {
                 foreach (static::getAllLocaleSettings() as $localeSetting) {
                     if ($localeSetting['active_in_global']) {
-                        $locales[$localeSetting['url']] = $localeSetting['code'];
+                        $locales[$localeSetting['url']] = $localeSetting;
                     }
                 }
                 break;
@@ -61,7 +61,7 @@ trait LocaleTrait
             {
                 foreach (static::getAllLocaleSettings() as $localeSetting) {
                     if ($localeSetting['active_in_au']) {
-                        $locales[$localeSetting['url']] = $localeSetting['code'];
+                        $locales[$localeSetting['url']] = $localeSetting;
                     }
                 }
                 break;

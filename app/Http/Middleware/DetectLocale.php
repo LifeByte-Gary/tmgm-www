@@ -61,7 +61,7 @@ class DetectLocale
         if (isset($activeLocales[$locale])) {
 
             // Valid locale, set locale and store in session.
-            App::setLocale($activeLocales[$locale]);
+            App::setLocale($activeLocales[$locale]['code']);
             Session::put('locale', $locale);
         } else {
 
