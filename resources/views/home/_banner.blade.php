@@ -3,25 +3,25 @@
         @switch(substr(app()->getLocale(), 0, 2))
             @case('zh')
             @case('vn')
-            <h1>{{ get_page_content($pageId, 'banner_left_title', 'Combining a Transparent Trading Environment with the Best Pricing') }}</h1>
+            <h1>{{ __('pages/home.banner.left_title') }}</h1>
 
             @break
 
             @case('en')
             @case('pt')
-            <h1>{{ get_page_content($pageId, 'banner_left_title_1', 'Combining a Transparent') }}
-                <span> {{ get_page_content($pageId, 'banner_left_title_2', 'Trading Environment') }}</span>
-                {{ get_page_content($pageId, 'banner_left_title_3', 'with the Best Pricing') }}
+            <h1>{{ __('pages/home.banner.left_btn_wrapper_1') }}
+                <span> {{ __('pages/home.banner.left_btn_wrapper_2') }}</span>
+                {{ __('pages/home.banner.left_btn_wrapper_3') }}
             </h1>
             @break
         @endswitch
 
         <div class="tm-btn-wrapper">
             <a href="https://portal.tmgm.com/register?language=zh" target="_blank"
-               class="btn-big white">{{ get_page_content($pageId, 'banner_left_btn_wrapper_1', 'Start Trading') }}</a>
-            {{ get_page_content($pageId, 'banner_left_btn_wrapper_2', 'or') }}
+               class="btn-big white">{{ __('pages/home.banner.left_btn_wrapper_1') }}</a>
+            {{ __('pages/home.banner.left_btn_wrapper_2') }}
             <a href="https://portal.tmgm.com/register?register_type=demo&amp;language=zh" target="_blank"
-               class="text-link">{{ get_page_content($pageId, 'banner_left_btn_wrapper_3', 'Try Demo Account') }}</a>
+               class="text-link">{{ __('pages/home.banner.left_btn_wrapper_3') }}</a>
         </div>
         <div class="banner-img">
             <img src="{{ asset('img/banner-img.png') }}" alt="">
