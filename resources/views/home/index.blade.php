@@ -5,5 +5,5 @@
         @include('home._banner')
     </div>
 
-    {{--    @include('layouts._get-started')--}}
+    @include('layouts._get-started')
 @endsection

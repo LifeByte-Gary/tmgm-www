@@ -19,12 +19,24 @@ class PageController extends Controller
         return redirect(route('pages.home', ['locale' => Session::get('locale', 'en')]));
     }
 
-    public function home(Request $request, $locale): Factory|View|Application
+    public function home($locale): Factory|View|Application
     {
-        $page = PageTrait::getPageByTagAndLocale('home', $locale, DomainDetectable::detectDomain());
+        return self::renderPage('home', $locale);
+    }
+
+    public function markets($locale): View|Factory|Application
+    {
+        return self::renderPage('markets', $locale);
+    }
+
+    private static function renderPage(String $pageTag, $locale): Factory|View|Application
+    {
+        $page = PageTrait::getPageByTagAndLocale($pageTag, $locale, DomainDetectable::detectDomain());
 
         if ($page) {
-            return view($page->view_path, ['pageId' => $page->id]);
+            return view($page->view_path);
         }
+
+        abort(404);
     }
 }

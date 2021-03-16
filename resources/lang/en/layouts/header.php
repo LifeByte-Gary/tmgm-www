@@ -47,6 +47,7 @@ return [
             "3_1" => "Range of Markets",
             "3_2" => "Trading Accounts",
             "3_3" => "Deposit & Withdrawal",
+            "3_4" => "TMGM Pro",
             "4_1" => "HUBx",
             "4_2" => "Trade the AO21",
             "5_1" => "Partnership Plans",
