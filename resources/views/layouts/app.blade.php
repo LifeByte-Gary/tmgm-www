@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ get_current_locale()['code'] }}">
+<html lang="{{ get_current_locale($domain)['code'] }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">

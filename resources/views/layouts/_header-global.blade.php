@@ -1,4 +1,5 @@
 <header class="tm-main-header">
+    {{-- Desktop Header --}}
     <div class="tm-container flx logo-row">
         <div class="tm-logo-holder">
             <a href="/">
@@ -6,143 +7,205 @@
             </a>
         </div>
         <div class="top-lang">
-            <a href="https://competition.tmgm.com/en/" target="_blank" class="btn-rounded white">Competition</a>
-            <a href="https://portal.tmgm.com/login?language=en" target="_blank"
-               class="btn-rounded white-line">Portal</a>
-            <a href="https://portal.tmgm.com/register?language=en" target="_blank" class="btn-rounded white">Get
-                Started</a>
+            @switch(get_current_locale($domain)['url'])
+                @case('en')
+                <a href="https://competition.tmgm.com/en/" target="_blank" class="btn-rounded white">
+                    {{ __('layouts/header.header.btn_1') }}
+                </a>
+                <a href="https://portal.tmgm.com/login?language=en" target="_blank" class="btn-rounded white-line">
+                    {{ __('layouts/header.header.btn_2') }}
+                </a>
+                <a href="https://portal.tmgm.com/register?language=en" target="_blank" class="btn-rounded white">
+                    {{ __('layouts/header.header.btn_3') }}
+                </a>
+                @break
+
+                @case('chs')
+                <a href="https://competition.tmgm.com/cn/" target="_blank" class="btn-rounded white">
+                    {{ __('layouts/header.header.btn_1') }}
+                </a>
+                <a href="https://portal.tmgm.com/login?language=zh" target="_blank" class="btn-rounded white-line">
+                    {{ __('layouts/header.header.btn_2') }}
+                </a>
+                <a href="https://portal.tmgm.com/register?language=zh" target="_blank" class="btn-rounded white">
+                    {{ __('layouts/header.header.btn_3') }}
+                </a>
+                @break
+            @endswitch
             <span class="lang-trigger">
                     <img src="{{ asset('/img/flag-uk.png') }}" alt=""/>
                 </span>
 
             <div class="select-language-drop">
-                <a href="javascript:" data-href="{none}/en/" class="item-lang">
-                    <img src="{{ asset('/img/flag-uk.png') }}" alt=""/>
-                    <span>English</span>
-                </a>
-                <a href="javascript:" data-href="{none}/cn/" class="item-lang">
-                    <img src="{{ asset('/img/flag-cn.png') }}" alt=""/>
-                    <span>简体中文</span>
-                </a>
-                <a href="javascript:" data-href="/pt/" class="item-lang">
-                    <img src="{{ asset('img/flags/br.png') }}" alt="">
-                    <span>Português</span>
-                </a>
-                <a href="javascript:" data-href="/es/" class="item-lang">
-                    <img src="{{ asset('img/flag-es.png') }}" alt="">
-                    <span>Español</span>
-                </a>
-                <a href="javascript:" data-href="/th/" class="item-lang">
-                    <img src="{{ asset('img/flags/th.png') }}" alt="">
-                    <span>ภาษาไทย</span>
-                </a>
-                <a href="javascript:" data-href="/vn/" class="item-lang">
-                    <img src="{{ asset('img/flag-vn.png') }}" alt="">
-                    <span>Tiếng Việt</span>
-                </a>
+                @foreach(get_active_locales($domain) as $locale)
+                    <a href="javascript:" data-href="{{ route('pages.home', ['locale' => $locale['url']]) }}"
+                       class="item-lang">
+                        <img src="{{ asset($locale['flag']) }}" alt=""/>
+                        <span>{{ $locale['description'] }}</span>
+                    </a>
+                @endforeach
             </div>
-
         </div>
     </div>
+    {{-- Desktop Header Ends --}}
+
+    {{-- Desktop Navbar --}}
     <div class="tm-container flx nav-row">
         <nav>
             <div class="tm-container">
                 <ul>
                     <li class="has-submenu">
-                        <a href="javascript:void(0);">Markets</a>
-
+                        <a href="javascript:void(0);">{{ __('layouts/header.nav.main_nav.1') }}</a>
                         <ul class="tm-submenu">
-
-                            <li><a href="/en/markets">Range of Markets</a></li>
-
-                            <li><a href="/en/forex">Forex</a></li>
-
-                            <li><a href="/en/shares">Shares</a></li>
-
-                            <li><a href="/en/metals">Precious Metal</a></li>
-
-                            <li><a href="/en/energies">Energies</a></li>
-
-                            <li><a href="/en/indices">Indices</a></li>
-
+                            <li>
+                                <a href="{{ route('pages.markets', get_current_locale($domain)['url']) }}">
+                                    {{ __('layouts/header.nav.sub_nav.1_1') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('pages.forex', get_current_locale($domain)['url']) }}">
+                                    {{ __('layouts/header.nav.sub_nav.1_2') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('pages.shares', get_current_locale($domain)['url']) }}">
+                                    {{ __('layouts/header.nav.sub_nav.1_3') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('pages.metals', get_current_locale($domain)['url']) }}">
+                                    {{ __('layouts/header.nav.sub_nav.1_4') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('pages.energies', get_current_locale($domain)['url']) }}">
+                                    {{ __('layouts/header.nav.sub_nav.1_5') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('pages.indices', get_current_locale($domain)['url']) }}">
+                                    {{ __('layouts/header.nav.sub_nav.1_6') }}
+                                </a>
+                            </li>
                         </ul>
-
                     </li>
+
                     <li class="has-submenu">
-                        <a href="javascript:void(0);">Trading Platforms</a>
-
+                        <a href="javascript:void(0);">{{ __('layouts/header.nav.main_nav.2') }}</a>
                         <ul class="tm-submenu">
-
-                            <li><a href="/en/trading-platforms">Platform Overview</a></li>
-
-                            <li><a href="/en/mt4">MetaTrader 4</a></li>
-
-                            <li><a href="/en/mt5">MetaTrader 5</a></li>
-
-                            <li><a href="/en/iress">IRESS</a></li>
-
+                            <li>
+                                <a href="{{ route('pages.trading-platforms', get_current_locale($domain)['url']) }}">
+                                    {{ __('layouts/header.nav.sub_nav.2_1') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('pages.mt4', get_current_locale($domain)['url']) }}">
+                                    {{ __('layouts/header.nav.sub_nav.2_2') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('pages.mt5', get_current_locale($domain)['url']) }}">
+                                    {{ __('layouts/header.nav.sub_nav.2_3') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('pages.iress', get_current_locale($domain)['url']) }}">
+                                    {{ __('layouts/header.nav.sub_nav.2_4') }}
+                                </a>
+                            </li>
                         </ul>
-
                     </li>
+
                     <li class="has-submenu">
-                        <a href="javascript:void(0);">Trading With Us</a>
-
+                        <a href="javascript:void(0);">{{ __('layouts/header.nav.main_nav.3') }}</a>
                         <ul class="tm-submenu">
-
-                            <li><a href="/en/markets">Range of Markets</a></li>
-
-                            <li><a href="/en/trading-accounts">Trading Accounts</a></li>
-
-                            <li><a href="/en/deposit-and-withdrawal">Deposit &amp; Withdrawal</a></li>
-
+                            <li>
+                                <a href="{{ route('pages.markets', get_current_locale($domain)['url']) }}">
+                                    {{ __('layouts/header.nav.sub_nav.3_1') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('pages.trading-accounts', get_current_locale($domain)['url']) }}">
+                                    {{ __('layouts/header.nav.sub_nav.3_2') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('pages.deposit-and-withdrawal', get_current_locale($domain)['url']) }}">
+                                    {{ __('layouts/header.nav.sub_nav.3_3') }}
+                                </a>
+                            </li>
                         </ul>
-
                     </li>
+
                     <li class="has-submenu">
-                        <a href="javascript:void(0);">Tools</a>
-
+                        <a href="javascript:void(0);">{{ __('layouts/header.nav.main_nav.4') }}</a>
                         <ul class="tm-submenu">
-
-                            <li><a href="/en/hubx">HUBx</a></li>
-
-                            <li><a href="/en/trade-with-australia-open">Trade the AO21</a></li>
-
+                            <li>
+                                <a href="{{ route('pages.hubx', get_current_locale($domain)['url']) }}">
+                                    {{ __('layouts/header.nav.sub_nav.4_1') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('pages.trade-with-ao', get_current_locale($domain)['url']) }}">
+                                    {{ __('layouts/header.nav.sub_nav.4_2') }}
+                                </a>
+                            </li>
                         </ul>
-
                     </li>
+
                     <li class="has-submenu">
-                        <a href="javascript:void(0);">Partnership</a>
-
+                        <a href="javascript:void(0);">{{ __('layouts/header.nav.main_nav.5') }}</a>
                         <ul class="tm-submenu">
-
-                            <li><a href="/en/partnership-plans">Partnership Plans</a></li>
-
+                            <li>
+                                <a href="{{ route('pages.partnership-plans', get_current_locale($domain)['url']) }}">
+                                    {{ __('layouts/header.nav.sub_nav.5_1') }}
+                                </a>
+                            </li>
                         </ul>
-
                     </li>
+
                     <li class="has-submenu">
-                        <a href="javascript:void(0);">Company</a>
-
+                        <a href="javascript:void(0);">{{ __('layouts/header.nav.main_nav.6') }}</a>
                         <ul class="tm-submenu">
-
-                            <li><a href="/en/about">About Us</a></li>
-
-                            <li><a href="/en/why-us">Why TMGM</a></li>
-
-                            <li><a href="/en/regulations">Regulatory Supervision</a></li>
-
-                            <li><a href="/en/legal-documents">Legal Documents</a></li>
-
-                            <li><a href="/en/contact">Contact Us</a></li>
-
-                            <li><a href="/en/australian-open-21">AO 21</a></li>
-
+                            <li>
+                                <a href="{{ route('pages.about', get_current_locale($domain)['url']) }}">
+                                    {{ __('layouts/header.nav.sub_nav.6_1') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('pages.why-us', get_current_locale($domain)['url']) }}">
+                                    {{ __('layouts/header.nav.sub_nav.6_2') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('pages.regulations', get_current_locale($domain)['url']) }}">
+                                    {{ __('layouts/header.nav.sub_nav.6_3') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('pages.legal-documents', get_current_locale($domain)['url']) }}">
+                                    {{ __('layouts/header.nav.sub_nav.6_4') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('pages.contact', get_current_locale($domain)['url']) }}">
+                                    {{ __('layouts/header.nav.sub_nav.6_5') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('pages.ao-21', get_current_locale($domain)['url']) }}">
+                                    {{ __('layouts/header.nav.sub_nav.6_6') }}
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
             </div>
         </nav>
     </div>
+    {{-- Desktop Navbar Ends --}}
+
+    {{-- Desktop Sticky Navbar --}}
     <div class="sticky-header-nav-prime">
         <div class="flx">
             <div class="responsive-logo-holder">
@@ -154,268 +217,405 @@
                 <div class="mobile-menu-items-wraper">
                     <ul>
                         <li class="has-submenu">
-                            <a href="javascript:void(0);">Markets</a>
-
+                            <a href="javascript:void(0);">{{ __('layouts/header.nav.main_nav.1') }}</a>
                             <ul class="tm-submenu">
-
-                                <li><a href="/en/markets">Range of Markets</a></li>
-
-                                <li><a href="/en/forex">Forex</a></li>
-
-                                <li><a href="/en/shares">Shares</a></li>
-
-                                <li><a href="/en/metals">Precious Metal</a></li>
-
-                                <li><a href="/en/energies">Energies</a></li>
-
-                                <li><a href="/en/indices">Indices</a></li>
-
+                                <li>
+                                    <a href="{{ route('pages.markets', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.1_1') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.forex', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.1_2') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.shares', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.1_3') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.metals', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.1_4') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.energies', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.1_5') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.indices', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.1_6') }}
+                                    </a>
+                                </li>
                             </ul>
-
                         </li>
+
                         <li class="has-submenu">
-                            <a href="javascript:void(0);">Trading Platforms</a>
-
+                            <a href="javascript:void(0);">{{ __('layouts/header.nav.main_nav.2') }}</a>
                             <ul class="tm-submenu">
-
-                                <li><a href="/en/trading-platforms">Platform Overview</a></li>
-
-                                <li><a href="/en/mt4">MetaTrader 4</a></li>
-
-                                <li><a href="/en/mt5">MetaTrader 5</a></li>
-
-                                <li><a href="/en/iress">IRESS</a></li>
-
+                                <li>
+                                    <a href="{{ route('pages.trading-platforms', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.2_1') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.mt4', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.2_2') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.mt5', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.2_3') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.iress', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.2_4') }}
+                                    </a>
+                                </li>
                             </ul>
-
                         </li>
+
                         <li class="has-submenu">
-                            <a href="javascript:void(0);">Trading With Us</a>
-
+                            <a href="javascript:void(0);">{{ __('layouts/header.nav.main_nav.3') }}</a>
                             <ul class="tm-submenu">
-
-                                <li><a href="/en/markets">Range of Markets</a></li>
-
-                                <li><a href="/en/trading-accounts">Trading Accounts</a></li>
-
-                                <li><a href="/en/deposit-and-withdrawal">Deposit &amp; Withdrawal</a></li>
-
+                                <li>
+                                    <a href="{{ route('pages.markets', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.3_1') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.trading-accounts', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.3_2') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.deposit-and-withdrawal', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.3_3') }}
+                                    </a>
+                                </li>
                             </ul>
-
                         </li>
+
                         <li class="has-submenu">
-                            <a href="javascript:void(0);">Tools</a>
-
+                            <a href="javascript:void(0);">{{ __('layouts/header.nav.main_nav.4') }}</a>
                             <ul class="tm-submenu">
-
-                                <li><a href="/en/hubx">HUBx</a></li>
-
-                                <li><a href="/en/trade-with-australia-open">Trade the AO21</a></li>
-
+                                <li>
+                                    <a href="{{ route('pages.hubx', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.4_1') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.trade-with-ao', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.4_2') }}
+                                    </a>
+                                </li>
                             </ul>
-
                         </li>
+
                         <li class="has-submenu">
-                            <a href="javascript:void(0);">Partnership</a>
-
+                            <a href="javascript:void(0);">{{ __('layouts/header.nav.main_nav.5') }}</a>
                             <ul class="tm-submenu">
-
-                                <li><a href="/en/partnership-plans">Partnership Plans</a></li>
-
+                                <li>
+                                    <a href="{{ route('pages.partnership-plans', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.5_1') }}
+                                    </a>
+                                </li>
                             </ul>
-
                         </li>
+
                         <li class="has-submenu">
-                            <a href="javascript:void(0);">Company</a>
-
+                            <a href="javascript:void(0);">{{ __('layouts/header.nav.main_nav.6') }}</a>
                             <ul class="tm-submenu">
-
-                                <li><a href="/en/about">About Us</a></li>
-
-                                <li><a href="/en/why-us">Why TMGM</a></li>
-
-                                <li><a href="/en/regulations">Regulatory Supervision</a></li>
-
-                                <li><a href="/en/legal-documents">Legal Documents</a></li>
-
-                                <li><a href="/en/contact">Contact Us</a></li>
-
-                                <li><a href="/en/australian-open-21">AO 21</a></li>
-
+                                <li>
+                                    <a href="{{ route('pages.about', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.6_1') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.why-us', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.6_2') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.regulations', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.6_3') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.legal-documents', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.6_4') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.contact', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.6_5') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.ao-21', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.6_6') }}
+                                    </a>
+                                </li>
                             </ul>
-
                         </li>
                     </ul>
                 </div>
             </nav>
             <div class="tm-btn-holder">
                 <a href="https://portal.tmgm.com/register" target="_blank" class="btn-rounded white
-                    get-started-btn">Get Started</a>
-                <!--<a href="https://portal.tmgm.com/login" target="_blank" class="btn-rounded-->
-                <!--white-line">--><!--</a>-->
+                    get-started-btn">
+                    {{ __('layouts/header.header.btn_3') }}
+                </a>
             </div>
         </div>
     </div>
+    {{-- Desktop Sticky Navbar Ends --}}
+
+    {{-- Mobile Header --}}
     <div class="sticky-header-nav">
         <div class="flx">
             <div class="responsive-logo-holder">
-                <a href="/en/">
+                <a href="{{ route('pages.home', get_current_locale($domain)['url']) }}">
                     <img src="{{asset('img/logo.png')}}" alt="TMGM">
                 </a>
             </div>
+
+            {{-- Mobile Menu Nav --}}
             <nav class="mobile-nav">
                     <span class="close-menu">
                         ×
                     </span>
                 <div class="tm-btn-wrapper tm-pt-40 t-al-c">
-                    <a href="https://portal.tmgm.com/register?language=en" target="_blank" class="btn-rounded white
-                    get-started-btn t-dn m-dib">Get Started</a>
-                    <a href="https://portal.tmgm.com/login?language=en" target="_blank"
-                       class="btn-rounded white-line t-dn m-dib">Portal</a>
+                    @switch(get_current_locale($domain)['url'])
+                        @case('en')
+                        <a href="https://portal.tmgm.com/register?language=en" target="_blank" class="btn-rounded white
+                    get-started-btn t-dn m-dib">
+                            {{ __('layouts/header.header.btn_3') }}
+                        </a>
+                        <a href="https://portal.tmgm.com/login?language=en" target="_blank"
+                           class="btn-rounded white-line t-dn m-dib">
+                            {{ __('layouts/header.header.btn_2') }}
+                        </a>
+                        @break
+
+                        @case('chs')
+                        <a href="https://portal.tmgm.com/register?language=zh" target="_blank" class="btn-rounded white
+                    get-started-btn t-dn m-dib">
+                            {{ __('layouts/header.header.btn_3') }}
+                        </a>
+                        <a href="https://portal.tmgm.com/login?language=zh" target="_blank"
+                           class="btn-rounded white-line t-dn m-dib">
+                            {{ __('layouts/header.header.btn_2') }}
+                        </a>
+                        @break
+                    @endswitch
                 </div>
+
                 <div class="mobile-menu-items-wraper tm-pt-40">
+
                     <ul>
-
-
                         <li class="has-submenu">
-                            <a href="javascript:void(0);">Markets</a>
+                            <a href="javascript:void(0);">{{ __('layouts/header.nav.main_nav.1') }}</a>
                             <ul class="tm-submenu">
-                                <li><h4>Markets</h4></li>
-
-                                <li><a href="/en/markets">Range of Markets</a></li>
-
-                                <li><a href="/en/forex">Forex</a></li>
-
-                                <li><a href="/en/shares">Shares</a></li>
-
-                                <li><a href="/en/metals">Precious Metal</a></li>
-
-                                <li><a href="/en/energies">Energies</a></li>
-
-                                <li><a href="/en/indices">Indices</a></li>
-
+                                <li>
+                                    <a href="{{ route('pages.markets', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.1_1') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.forex', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.1_2') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.shares', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.1_3') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.metals', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.1_4') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.energies', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.1_5') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.indices', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.1_6') }}
+                                    </a>
+                                </li>
                             </ul>
                         </li>
-
-
                         <li class="has-submenu">
-                            <a href="javascript:void(0);">Trading Platforms</a>
+                            <a href="javascript:void(0);">{{ __('layouts/header.nav.main_nav.2') }}</a>
                             <ul class="tm-submenu">
-                                <li><h4>Trading Platforms</h4></li>
-
-                                <li><a href="/en/trading-platforms">Platform Overview</a></li>
-
-                                <li><a href="/en/mt4">MetaTrader 4</a></li>
-
-                                <li><a href="/en/mt5">MetaTrader 5</a></li>
-
-                                <li><a href="/en/iress">IRESS</a></li>
-
+                                <li>
+                                    <a href="{{ route('pages.trading-platforms', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.2_1') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.mt4', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.2_2') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.mt5', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.2_3') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.iress', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.2_4') }}
+                                    </a>
+                                </li>
                             </ul>
                         </li>
-
-
                         <li class="has-submenu">
-                            <a href="javascript:void(0);">Trading With Us</a>
+                            <a href="javascript:void(0);">{{ __('layouts/header.nav.main_nav.3') }}</a>
                             <ul class="tm-submenu">
-                                <li><h4>Trading With Us</h4></li>
-
-                                <li><a href="/en/markets">Range of Markets</a></li>
-
-                                <li><a href="/en/trading-accounts">Trading Accounts</a></li>
-
-                                <li><a href="/en/deposit-and-withdrawal">Deposit &amp; Withdrawal</a></li>
-
+                                <li>
+                                    <a href="{{ route('pages.markets', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.3_1') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.trading-accounts', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.3_2') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.deposit-and-withdrawal', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.3_3') }}
+                                    </a>
+                                </li>
                             </ul>
                         </li>
-
-
                         <li class="has-submenu">
-                            <a href="javascript:void(0);">Tools</a>
+                            <a href="javascript:void(0);">{{ __('layouts/header.nav.main_nav.4') }}</a>
                             <ul class="tm-submenu">
-                                <li><h4>Tools</h4></li>
-
-                                <li><a href="/en/hubx">HUBx</a></li>
-
-                                <li><a href="/en/trade-with-australia-open">Trade the AO21</a></li>
-
+                                <li>
+                                    <a href="{{ route('pages.hubx', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.4_1') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.trade-with-ao', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.4_2') }}
+                                    </a>
+                                </li>
                             </ul>
                         </li>
-
-
                         <li class="has-submenu">
-                            <a href="javascript:void(0);">Partnership</a>
+                            <a href="javascript:void(0);">{{ __('layouts/header.nav.main_nav.5') }}</a>
                             <ul class="tm-submenu">
-                                <li><h4>Partnership</h4></li>
-
-                                <li><a href="/en/partnership-plans">Partnership Plans</a></li>
-
+                                <li>
+                                    <a href="{{ route('pages.partnership-plans', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.5_1') }}
+                                    </a>
+                                </li>
                             </ul>
                         </li>
-
-
                         <li class="has-submenu">
-                            <a href="javascript:void(0);">Company</a>
+                            <a href="javascript:void(0);">{{ __('layouts/header.nav.main_nav.6') }}</a>
                             <ul class="tm-submenu">
-                                <li><h4>Company</h4></li>
-
-                                <li><a href="/en/about">About Us</a></li>
-
-                                <li><a href="/en/why-us">Why TMGM</a></li>
-
-                                <li><a href="/en/regulations">Regulatory Supervision</a></li>
-
-                                <li><a href="/en/legal-documents">Legal Documents</a></li>
-
-                                <li><a href="/en/contact">Contact Us</a></li>
-
-                                <li><a href="/en/australian-open-21">AO 21</a></li>
-
+                                <li>
+                                    <a href="{{ route('pages.about', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.6_1') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.why-us', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.6_2') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.regulations', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.6_3') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.legal-documents', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.6_4') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.contact', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.6_5') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('pages.ao-21', get_current_locale($domain)['url']) }}">
+                                        {{ __('layouts/header.nav.sub_nav.6_6') }}
+                                    </a>
+                                </li>
                             </ul>
                         </li>
-
-
                     </ul>
                     <div class="competition-btn">
-                        <a href="https://competition.tmgm.com/en/" class="btn-rounded white get-started-btn"
-                           target="_blank">Competition</a>
+                        @switch(get_current_locale($domain)['url'])
+                            @case('en')
+                            <a href="https://competition.tmgm.com/en/" class="btn-rounded white get-started-btn"
+                               target="_blank">
+                                {{ __('layouts/header.header.btn_1') }}
+                            </a>
+                            @break
+
+                            @case('chs')
+                            <a href="https://competition.tmgm.com/cn/" class="btn-rounded white get-started-btn"
+                               target="_blank">
+                                {{ __('layouts/header.header.btn_1') }}
+                            </a>
+                            @break
+                        @endswitch
                     </div>
                 </div>
             </nav>
+            {{-- Mobile Menu Nav Ends --}}
+
+            {{-- Mobile Header Button Wrapper --}}
             <div class="tm-btn-holder">
-                <a href="https://portal.tmgm.com/register?language=en" target="_blank" class="btn-rounded white
-                    get-started-btn t-dib m-dn">Get Started</a>
-                <a href="https://portal.tmgm.com/login?language=en" target="_blank" class="btn-rounded
-                    white-line t-dib m-dn">Portal</a>
+                @switch(get_current_locale($domain)['url'])
+                    @case('en')
+                    <a href="https://portal.tmgm.com/register?language=en" target="_blank"
+                       class="btn-rounded white get-started-btn t-dib m-dn">
+                        {{ __('layouts/header.header.btn_3') }}
+                    </a>
+                    <a href="https://portal.tmgm.com/login?language=en" target="_blank"
+                       class="btn-rounded white-line t-dib m-dn">
+                        {{ __('layouts/header.header.btn_2') }}
+                    </a>
+                    @break
+
+                    @case('chs')
+                    <a href="https://portal.tmgm.com/register?language=zh" target="_blank"
+                       class="btn-rounded white get-started-btn t-dib m-dn">
+                        {{ __('layouts/header.header.btn_3') }}
+                    </a>
+                    <a href="https://portal.tmgm.com/login?language=zh" target="_blank"
+                       class="btn-rounded white-line t-dib m-dn">
+                        {{ __('layouts/header.header.btn_2') }}
+                    </a>
+                    @break
+                @endswitch
+
                 <span class="lang-trigger">
                         <img src="{{ asset('img/flag-uk.png') }}" alt="">
                         <span>EN</span>
                     </span>
                 <div class="select-language-drop">
-                    <a href="javascript:" data-href="/en/" class="item-lang">
-                        <img src="{{ asset('img/flag-uk.png') }}" alt="">
-                        <span>English</span>
-                    </a>
-                    <a href="javascript:" data-href="/cn/" class="item-lang">
-                        <img src="{{ asset('img/flag-cn.png') }}" alt="">
-                        <span>简体中文</span>
-                    </a>
-                    <a href="javascript:" data-href="/pt/" class="item-lang">
-                        <img src="{{ asset('img/flags/br.png') }}" alt="">
-                        <span>Português</span>
-                    </a>
-                    <a href="javascript:" data-href="/es/" class="item-lang">
-                        <img src="{{ asset('img/flag-es.png') }}" alt="">
-                        <span>Español</span>
-                    </a>
-                    <a href="javascript:" data-href="/th/" class="item-lang">
-                        <img src="{{ asset('img/flags/th.png') }}" alt="">
-                        <span>ภาษาไทย</span>
-                    </a>
-                    <a href="javascript:" data-href="/vn/" class="item-lang">
-                        <img src="{{ asset('img/flag-vn.png') }}" alt="">
-                        <span>Tiếng Việt</span>
-                    </a>
+                    @foreach(get_active_locales($domain) as $locale)
+                        <a href="javascript:" data-href="{{ route('pages.home', ['locale' => $locale['url']]) }}" class="item-lang">
+                            <img src="{{ asset($locale['flag']) }}" alt="">
+                            <span>{{ $locale['description'] }}</span>
+                        </a>
+                    @endforeach
                 </div>
                 <span class="menu-trigger">
                         <span></span>
@@ -423,7 +623,10 @@
                         <span></span>
                     </span>
             </div>
+            {{-- Mobile Header Button Wrapper Ends --}}
         </div>
     </div>
+    {{-- Mobile Header Ends --}}
+
 </header>
 

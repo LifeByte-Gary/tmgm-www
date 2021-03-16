@@ -43,7 +43,6 @@ if (!function_exists('get_current_locale')) {
     function get_current_locale($domain = 'au'): array|string
     {
         $currentLocale = App::currentLocale();
-        $locale = LocaleTrait::getLocaleSettingByCode($domain, $currentLocale);
         return LocaleTrait::getLocaleSettingByCode($domain, $currentLocale);
     }
 }
