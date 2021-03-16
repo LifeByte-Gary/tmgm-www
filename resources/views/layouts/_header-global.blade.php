@@ -7,6 +7,8 @@
             </a>
         </div>
         <div class="top-lang">
+
+            {{-- Header Buttons --}}
             @switch(get_current_locale($domain)['url'])
                 @case('en')
                 <a href="https://competition.tmgm.com/en/" target="_blank" class="btn-rounded white">
@@ -31,9 +33,56 @@
                     {{ __('layouts/header.header.btn_3') }}
                 </a>
                 @break
+
+                @case('pt')
+                <a href="https://competition.tmgm.com/en/" target="_blank" class="btn-rounded white">
+                    {{ __('layouts/header.header.btn_1') }}
+                </a>
+                <a href="https://portal.tmgm.com/login?language=pt" target="_blank" class="btn-rounded white-line">
+                    {{ __('layouts/header.header.btn_2') }}
+                </a>
+                <a href="https://portal.tmgm.com/register?language=pt" target="_blank" class="btn-rounded white">
+                    {{ __('layouts/header.header.btn_3') }}
+                </a>
+                @break
+
+                @case('es')
+                <a href="https://competition.tmgm.com/en/" target="_blank" class="btn-rounded white">
+                    {{ __('layouts/header.header.btn_1') }}
+                </a>
+                <a href="https://portal.tmgm.com/login?language=es" target="_blank" class="btn-rounded white-line">
+                    {{ __('layouts/header.header.btn_2') }}
+                </a>
+                <a href="https://portal.tmgm.com/register?language=es" target="_blank" class="btn-rounded white">
+                    {{ __('layouts/header.header.btn_3') }}
+                </a>
+                @break
+
+                @case('th')
+                <a href="https://portal.tmgm.com/login?language=en" target="_blank" class="btn-rounded white-line">
+                    {{ __('layouts/header.header.btn_2') }}
+                </a>
+                <a href="https://portal.tmgm.com/register?language=en" target="_blank" class="btn-rounded white">
+                    {{ __('layouts/header.header.btn_3') }}
+                </a>
+                @break
+
+                @case('vi')
+                <a href="https://competition.tmgm.com/en/" target="_blank" class="btn-rounded white">
+                    {{ __('layouts/header.header.btn_1') }}
+                </a>
+                <a href="https://portal.tmgm.com/login?language=vi" target="_blank" class="btn-rounded white-line">
+                    {{ __('layouts/header.header.btn_2') }}
+                </a>
+                <a href="https://portal.tmgm.com/register?language=vi" target="_blank" class="btn-rounded white">
+                    {{ __('layouts/header.header.btn_3') }}
+                </a>
+                @break
             @endswitch
+            {{-- Header Buttons Ends --}}
+
             <span class="lang-trigger">
-                    <img src="{{ asset('/img/flag-uk.png') }}" alt=""/>
+                    <img src="{{ asset('/img/flags/uk.png') }}" alt=""/>
                 </span>
 
             <div class="select-language-drop">
@@ -606,12 +655,13 @@
                 @endswitch
 
                 <span class="lang-trigger">
-                        <img src="{{ asset('img/flag-uk.png') }}" alt="">
+                        <img src="{{ asset('img/flags/uk.png') }}" alt="">
                         <span>EN</span>
                     </span>
                 <div class="select-language-drop">
                     @foreach(get_active_locales($domain) as $locale)
-                        <a href="javascript:" data-href="{{ route('pages.home', ['locale' => $locale['url']]) }}" class="item-lang">
+                        <a href="javascript:" data-href="{{ route('pages.home', ['locale' => $locale['url']]) }}"
+                           class="item-lang">
                             <img src="{{ asset($locale['flag']) }}" alt="">
                             <span>{{ $locale['description'] }}</span>
                         </a>

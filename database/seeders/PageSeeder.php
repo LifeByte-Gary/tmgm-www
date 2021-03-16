@@ -17,40 +17,26 @@ class PageSeeder extends Seeder
         // Clear site_configs table.
         DB::table('pages')->delete();
 
-        $pages = array(
-            0 => array(
+        $pages = [];
+
+        foreach (range(1, 7) as $index) {
+            $pages[] = array(
                 'tag' => 'home',
                 'url' => '/',
                 'view_path' => 'home/index',
-                'locale_id' => 1,
+                'locale_id' => $index,
                 'for_global' => 1,
                 'for_au' => 1
-            ),
-            1 => array(
-                'tag' => 'home',
-                'url' => '/',
-                'view_path' => 'home/index',
-                'locale_id' => 2,
-                'for_global' => 1,
-                'for_au' => 1
-            ),
-            2 => array(
+            );
+            $pages[] = array(
                 'tag' => '404 Error',
                 'url' => null,
                 'view_path' => 'errors.404',
-                'locale_id' => 1,
+                'locale_id' => $index,
                 'for_global' => 1,
                 'for_au' => 1
-            ),
-            3 => array(
-                'tag' => '404 Error',
-                'url' => null,
-                'view_path' => 'errors.404',
-                'locale_id' => 2,
-                'for_global' => 1,
-                'for_au' => 1
-            ),
-        );
+            );
+        }
 
         DB::table('pages')->insert($pages);
     }

@@ -33,7 +33,7 @@
                 @break
             @endswitch
             <span class="lang-trigger">
-                    <img src="{{ asset('/img/flag-uk.png') }}" alt=""/>
+                    <img src="{{ asset('/img/flags/uk.png') }}" alt=""/>
                 </span>
 
             <div class="select-language-drop">
@@ -621,7 +621,7 @@
                 @endswitch
 
                 <span class="lang-trigger">
-                        <img src="{{ asset('img/flag-uk.png') }}" alt="">
+                        <img src="{{ asset('img/flags/uk.png') }}" alt="">
                         <span>EN</span>
                     </span>
                 <div class="select-language-drop">

@@ -13,12 +13,12 @@ return [
 
     // Banner language lines
     "banner" => [
-        "left_title_1" => "Combining a Transparent",
-        "left_title_2" => "Trading Environment",
-        "left_title_3" => "with the Best Pricing",
-        "left_btn_wrapper_1" => "Start Trading",
-        "left_btn_wrapper_2" => "or",
-        "left_btn_wrapper_3" => "Try Demo Account",
+        "left_title_1" => "Combinando um",
+        "left_title_2" => "ambiente transparente de trading",
+        "left_title_3" => "com o melhor preço do mercado",
+        "left_btn_wrapper_1" => "Comece a operar",
+        "left_btn_wrapper_2" => "Ou",
+        "left_btn_wrapper_3" => "Tentar a conta demonstrativa",
     ],
 
 ];

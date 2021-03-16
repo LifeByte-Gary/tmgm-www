@@ -21,30 +21,30 @@ class LocaleSeeder extends Seeder
             0 => array(
                 'url' => 'en',
                 'code' => 'en',
-                'flag' => '/img/flag-uk.png',
+                'flag' => '/img/flags/uk.png',
                 'description' => 'English',
                 'active_in_au' => 1,
                 'active_in_global' => 1
             ),
             1 => array(
                 'url' => 'chs',
-                'code' => 'zh-CN',
-                'flag' => '/img/flag-cn.png',
+                'code' => 'zh-Hans',
+                'flag' => '/img/flags/cn.png',
                 'description' => '简体中文',
                 'active_in_au' => 1,
                 'active_in_global' => 1
             ),
             2 => array(
                 'url' => 'cht',
-                'code' => 'zh-HK',
-                'flag' => '/img/flag-cn.png',
+                'code' => 'zh-Hant',
+                'flag' => '/img/flags/cn.png',
                 'description' => '繁体中文',
                 'active_in_au' => 0,
                 'active_in_global' => 1
             ),
             3 => array(
                 'url' => 'pt',
-                'code' => 'pt-BR',
+                'code' => 'pt',
                 'flag' => '/img/flags/br.png',
                 'description' => 'Português',
                 'active_in_au' => 0,
@@ -52,9 +52,25 @@ class LocaleSeeder extends Seeder
             ),
             4 => array(
                 'url' => 'es',
-                'code' => 'es-ES',
-                'flag' => '/img/flag-cn.png',
+                'code' => 'es',
+                'flag' => '/img/flags/es.png',
                 'description' => 'Español',
+                'active_in_au' => 0,
+                'active_in_global' => 1
+            ),
+            5 => array(
+                'url' => 'th',
+                'code' => 'th',
+                'flag' => '/img/flags/th.png',
+                'description' => 'ภาษาไทย',
+                'active_in_au' => 0,
+                'active_in_global' => 1
+            ),
+            6 => array(
+                'url' => 'vi',
+                'code' => 'vi',
+                'flag' => '/img/flags/vn.png',
+                'description' => 'Tiếng Việt',
                 'active_in_au' => 0,
                 'active_in_global' => 1
             ),

@@ -1,20 +1,9 @@
 <div class="tm-container flx">
     <div class="tm-banner-content">
-        @switch(substr(app()->getLocale(), 0, 2))
-            @case('zh')
-            @case('vn')
-            <h1>{{ __('pages/home.banner.left_title') }}</h1>
-
-            @break
-
-            @case('en')
-            @case('pt')
-            <h1>{{ __('pages/home.banner.left_btn_wrapper_1') }}
-                <span> {{ __('pages/home.banner.left_btn_wrapper_2') }}</span>
-                {{ __('pages/home.banner.left_btn_wrapper_3') }}
-            </h1>
-            @break
-        @endswitch
+        <h1>{{ __('pages/home.banner.left_title_1') }}
+            <span> {{ __('pages/home.banner.left_title_2') }}</span>
+            {{ __('pages/home.banner.left_title_3') }}
+        </h1>
 
         <div class="tm-btn-wrapper">
             <a href="https://portal.tmgm.com/register?language=zh" target="_blank"

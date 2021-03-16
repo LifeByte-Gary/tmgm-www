@@ -13,12 +13,12 @@ return [
 
     // Banner language lines
     "banner" => [
-        "left_title_1" => "Combining a Transparent",
-        "left_title_2" => "Trading Environment",
-        "left_title_3" => "with the Best Pricing",
-        "left_btn_wrapper_1" => "Start Trading",
-        "left_btn_wrapper_2" => "or",
-        "left_btn_wrapper_3" => "Try Demo Account",
+        "left_title_1" => "Môi trường giao dịch minh bạch kết hợp với tỷ giá tốt nhất",
+        "left_title_2" => "",
+        "left_title_3" => "",
+        "left_btn_wrapper_1" => "BẮt Đầu Giao Dịch",
+        "left_btn_wrapper_2" => "Hoặc",
+        "left_btn_wrapper_3" => "Mở Tài Khoản Thử",
     ],
 
 ];
