@@ -2,7 +2,11 @@
 
 namespace App\Exceptions;
 
+use App;
+use App\Traits\DomainDetectable;
+use App\Traits\LocaleTrait;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Session;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -36,6 +40,17 @@ class Handler extends ExceptionHandler
     {
         $this->reportable(function (Throwable $e) {
             //
+        });
+
+        $this->renderable(function (Throwable $e, $request) {
+            // Localization
+            // Get all active locales.
+            $activeLocales = LocaleTrait::getActiveLocalesByDomain(DomainDetectable::detectDomain());
+
+            // Get user prefer locale stored in session.
+            $preferLocale = Session::get('locale') ? Session::get('locale') : 'en';
+
+            App::setLocale(isset($activeLocales[$preferLocale]) ? $activeLocales[$preferLocale]['code'] : 'en');
         });
     }
 }

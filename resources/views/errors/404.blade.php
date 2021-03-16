@@ -4,7 +4,7 @@
     <div class="Page404">
         <div class="tm-container tm-commonweb clearfix">
             <div class="Page404-img">
-                <img src="/en/img/404-img.png" alt="">
+                <img src="{{ asset('/en/img/404-img.png')}}" alt="">
                 <div class="Page404-title">Page not found</div>
             </div>
             <div class="Page404-content">

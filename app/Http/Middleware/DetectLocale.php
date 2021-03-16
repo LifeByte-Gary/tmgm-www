@@ -42,7 +42,7 @@ class DetectLocale
         if ($preferLocale !== $requestLocale) {
 
             // The locale requested in the url is not the prefer locale, change app locale to $requestLocale.
-            self::setLocale($requestLocale, $activeLocales);
+            self::setLocale($requestLocale, $activeLocales, $preferLocale);
         } else {
             self::setLocale($preferLocale, $activeLocales);
         }
@@ -54,10 +54,14 @@ class DetectLocale
      * Set given locale as app locale if it is active.
      *
      * @param $locale :Given locale.
-     * @param $activeLocales :The list of active locales in current doamin.
+     * @param $activeLocales :The list of active locales in current domain.
+     * @param string $default :Default locale.
      */
-    private function setLocale($locale, $activeLocales)
+    private function setLocale($locale, $activeLocales, $default = 'en')
     {
+        // Validate $default.
+        $default = isset($activeLocales[$default]) ? $default : 'en';
+
         if (isset($activeLocales[$locale])) {
 
             // Valid locale, set locale and store in session.
@@ -65,7 +69,9 @@ class DetectLocale
             Session::put('locale', $locale);
         } else {
 
-            // Invalid locale, return 404 error page.
+            // Invalid locale, set locale as default, return 404 error page.
+            App::setLocale($default);
+            Session::put('locale', $default);
             abort(404);
         }
     }

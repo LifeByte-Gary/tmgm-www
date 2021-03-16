@@ -1,4 +1,5 @@
 <header class="tm-main-header">
+    {{-- Desktop Header --}}
     <div class="tm-container flx logo-row">
         <div class="tm-logo-holder">
             <a href="/">
@@ -6,37 +7,57 @@
             </a>
         </div>
         <div class="top-lang">
-            <a href="https://competition.tmgm.com/en/" target="_blank" class="btn-rounded white">Competition</a>
-            <a href="https://portal.tmgm.com/login?language=en" target="_blank"
-               class="btn-rounded white-line">Portal</a>
-            <a href="https://portal.tmgm.com/register?language=en" target="_blank" class="btn-rounded white">Get
-                Started</a>
+            @switch(get_current_locale($domain)['url'])
+                @case('en')
+                <a href="https://competition.tmgm.com/en/" target="_blank" class="btn-rounded white">
+                    {{ __('layouts/header.header.btn_1') }}
+                </a>
+                <a href="https://portal.tmgm.com/login?language=en" target="_blank" class="btn-rounded white-line">
+                    {{ __('layouts/header.header.btn_2') }}
+                </a>
+                <a href="https://portal.tmgm.com/register?language=en" target="_blank" class="btn-rounded white">
+                    {{ __('layouts/header.header.btn_3') }}
+                </a>
+                @break
+
+                @case('chs')
+                <a href="https://competition.tmgm.com/cn/" target="_blank" class="btn-rounded white">
+                    {{ __('layouts/header.header.btn_1') }}
+                </a>
+                <a href="https://portal.tmgm.com/login?language=zh" target="_blank" class="btn-rounded white-line">
+                    {{ __('layouts/header.header.btn_2') }}
+                </a>
+                <a href="https://portal.tmgm.com/register?language=zh" target="_blank" class="btn-rounded white">
+                    {{ __('layouts/header.header.btn_3') }}
+                </a>
+                @break
+            @endswitch
             <span class="lang-trigger">
                     <img src="{{ asset('/img/flag-uk.png') }}" alt=""/>
                 </span>
 
             <div class="select-language-drop">
-                <a href="javascript:" data-href="{{ route('pages.home', ['locale' => 'en']) }}" class="item-lang">
-                    <img src="{{ asset('/img/flag-uk.png') }}" alt=""/>
-                    <span>English</span>
-                </a>
-                <a href="javascript:" data-href="{{ route('pages.home', ['locale' => 'chs']) }}" class="item-lang">
-                    <img src="{{ asset('/img/flag-cn.png') }}" alt=""/>
-                    <span>简体中文</span>
-                </a>
+                @foreach(get_active_locales() as $locale)
+                    <a href="javascript:" data-href="{{ route('pages.home', ['locale' => $locale['url']]) }}" class="item-lang">
+                        <img src="{{ asset($locale['flag']) }}" alt=""/>
+                        <span>{{ $locale['description'] }}</span>
+                    </a>
+                @endforeach
             </div>
         </div>
     </div>
+
+    {{-- Desktop Navbar --}}
     <div class="tm-container flx nav-row">
         <nav>
             <div class="tm-container">
                 <ul>
                     <li class="has-submenu">
-                        <a href="javascript:void(0);">Markets</a>
+                        <a href="javascript:void(0);">{{ __('layouts/header.nav.main_nav.1') }}</a>
 
                         <ul class="tm-submenu">
 
-                            <li><a href="/en/markets">Range of Markets</a></li>
+                            <li><a href="/en/markets">{{ __('layouts/header.nav.sub_nav.1_1') }}</a></li>
 
                             <li><a href="/en/forex">Forex</a></li>
 
@@ -121,6 +142,7 @@
             </div>
         </nav>
     </div>
+
     <div class="sticky-header-nav-prime">
         <div class="flx">
             <div class="responsive-logo-holder">
@@ -234,6 +256,7 @@
             </div>
         </div>
     </div>
+
     <div class="sticky-header-nav">
         <div class="flx">
             <div class="responsive-logo-holder">

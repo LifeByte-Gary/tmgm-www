@@ -70,4 +70,22 @@ trait LocaleTrait
 
         return $locales;
     }
+
+    /**
+     * Get locale setting by given locale code.
+     *
+     * @param string $domain
+     * @param string $code
+     * @return array
+     */
+    public static function getLocaleSettingByCode($domain = 'au', $code = 'en'): array
+    {
+        foreach (static::getActiveLocalesByDomain($domain) as $localeSetting) {
+            if ($localeSetting['code'] === $code) {
+                return $localeSetting;
+            }
+        }
+
+        return static::getAllLocaleSettings()[$code];
+    }
 }
